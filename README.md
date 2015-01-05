@@ -3,7 +3,7 @@ fjorde
 
 Voir `sujet.pdf`
 
-### Auteurs(King of Middle Earth)
+### Auteurs
 
 * Antoine CHAUVIN
 * Alexandre BAPTISTE
