@@ -2,39 +2,44 @@ package fjorde;
 
 public class Player
 {
-    private final String[] COUL = {"Rouge","Jaune"};
-    private static int NUM_JOUEUR = 0;
-
-    private int numJoueur;
-    private String nom;
-    private String couleur;
-    private boolean doitJouer;
+    private int id;
+    private String name;
+    private String color;
     private int score;
 
-    public Player(String nom)
+    public Player(int id, String name, String color)
     {
-        this.nom = nom;
-        this.couleur = COUL[NUM_JOUEUR];
-        this.numJoueur += NUM_JOUEUR;
-        if(this.numJoueur == 1)
-        {
-            this.doitJouer = true;
-        }
-        else if (this.numJoueur == 2)
-        {
-            this.doitJouer = false;
-        }
-        this.score = 0;
+        this.id = id;
+        this.name = name;
+        this.color = color;
     }
 
-    public int getNumJoueur()
-    {
-        return numJoueur;
+    public int getId() {
+        return id;
     }
 
-    public void setNumJoueur(int numJoueur)
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName()
     {
-        this.numJoueur = numJoueur;
+        return name;
+    }
+
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getColor()
+    {
+        return color;
+    }
+
+    public void setColor(String color)
+    {
+        this.color = color;
     }
 
     public int getScore()
@@ -47,45 +52,21 @@ public class Player
         this.score = score;
     }
 
-
-    public String getNom()
-    {
-        return nom;
+    public void plusScore(int delta) {
+        setScore(getScore() + delta);
     }
 
-    public void setNom(String nom)
-    {
-        this.nom = nom;
-    }
-
-    public String getCouleur()
-    {
-        return couleur;
-    }
-
-    public void setCouleur(String couleur)
-    {
-        this.couleur = couleur;
-    }
-
-    public boolean isDoitJouer()
-    {
-        return doitJouer;
-    }
-
-    public void setDoitJouer(boolean doitJouer)
-    {
-        this.doitJouer = doitJouer;
+    public void minusScore(int delta) {
+        plusScore(-delta);
     }
 
     @Override
     public String toString()
     {
         return "Player{" +
-                "numJoueur=" + numJoueur +
-                ", nom='" + nom + '\'' +
-                ", couleur='" + couleur + '\'' +
-                ", doitJouer=" + doitJouer +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", color='" + color + '\'' +
                 '}';
     }
 }
