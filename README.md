@@ -1,6 +1,5 @@
 fjorde
 ======
-TI AJOUT
 Voir `sujet.pdf`
 
 ### Auteurs
@@ -8,7 +7,5 @@ Voir `sujet.pdf`
 * Antoine CHAUVIN
 * Alexandre BAPTISTE
 * Cyril ALVES
-* Brieuc DE TAPIE
+* Brieuc DE TAPPIE
 * Florentin BENARD
-test
-Voyons si ca marche !
