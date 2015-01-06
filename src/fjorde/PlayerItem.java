@@ -1,46 +1,31 @@
 package fjorde;
 
-import fjorde.Player;
-
 public abstract class PlayerItem
 {
-    private String couleur;
-    private Player proprio;
+    private Player owner;
 
-    public PlayerItem(Player proprio)
+    public PlayerItem(Player owner)
     {
-        this.proprio = proprio;
-        this.couleur = proprio.getCouleur();
+        this.owner = owner;
     }
 
     public abstract String getType();
 
-    public String getCouleur()
+    public Player getOwner()
     {
-        return couleur;
+        return owner;
     }
 
-    public void setCouleur(String couleur)
+    public void setOwner(Player owner)
     {
-        this.couleur = couleur;
-    }
-
-    public Player getProprio()
-    {
-        return proprio;
-    }
-
-    public void setProprio(Player proprio)
-    {
-        this.proprio = proprio;
+        this.owner = owner;
     }
 
     @Override
     public String toString()
     {
         return "PlayerItem{" +
-                "couleur='" + couleur + '\'' +
-                ", proprio=" + proprio +
+                "owner=" + owner +
                 '}';
     }
 }
