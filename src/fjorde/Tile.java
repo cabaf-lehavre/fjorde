@@ -13,6 +13,7 @@ public class Tile {
 
 	private TileItem[] items;
 	private Tile[] neighbours;
+	private PlayerItem item;
 
 	/**
 	 * Create a Tile
@@ -111,5 +112,21 @@ public class Tile {
 
 		// TODO
 		return true;
+	}
+
+	/**
+	 * Get the item present on this tile
+	 * @return a nullable item
+	 */
+	public PlayerItem getItem() {
+		return item;
+	}
+
+	/**
+	 * Set the item present on this tile
+	 * @param item a nullable item
+	 */
+	public void setItem(PlayerItem item) {
+		this.item = item;
 	}
 }
