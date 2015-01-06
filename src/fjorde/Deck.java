@@ -30,6 +30,6 @@ public class Deck {
         return res;
     }
 
-    private int getDrawn() { return remaining.size(); }
+    private int getRemainingTiles() { return remaining.size(); }
 }
 
