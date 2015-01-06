@@ -37,4 +37,16 @@ public final class TileItems {
     public static TileItem sample(Random random) {
         return create(random.nextInt(3));
     }
+
+    public static TileItem[] samples(int n, Random random) {
+        TileItem[] items = new TileItem[6];
+        for (int i = 0; i < n; i++) {
+            items[i] = TileItems.sample(random);
+        }
+        return items;
+    }
+
+    public static TileItem[] samples(int n) {
+        return samples(n, new Random(System.nanoTime()));
+    }
 }
