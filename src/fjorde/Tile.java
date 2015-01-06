@@ -90,4 +90,26 @@ public class Tile {
 			return getNeighbour(i - 2);
 		}
 	}
+
+	/**
+	 * Add a neighbour to this tile on the given index
+	 * @param neighbour a non-null tile
+	 * @param i an inetger ranged between 0 and {@link fjorde.Tile#CORNERS}
+	 */
+	public void addNeighbour(Tile neighbour, int i) {
+		if (!canAddNeighbour(neighbour, i)) {
+			throw new IllegalArgumentException();
+		}
+
+		this.neighbours[i] = neighbour;
+	}
+
+	private boolean canAddNeighbour(Tile neighbour, int i) {
+		if (this.neighbours[i] != null) {
+			return false;
+		}
+
+		// TODO
+		return true;
+	}
 }
