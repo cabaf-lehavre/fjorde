@@ -13,8 +13,4 @@ public class Pawn extends PlayerItem
         super(player);
     }
 
-    public  String getType()
-    {
-        return "Pawn";
-    }
 }

@@ -9,8 +9,6 @@ public abstract class PlayerItem
         this.owner = owner;
     }
 
-    public abstract String getType();
-
     public Player getOwner()
     {
         return owner;

@@ -14,8 +14,4 @@ public class Jail extends PlayerItem
         super(player);
     }
 
-    public String getType()
-    {
-        return "Jail";
-    }
 }
