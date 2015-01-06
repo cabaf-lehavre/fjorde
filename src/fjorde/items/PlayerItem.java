@@ -1,6 +1,8 @@
-package fjorde;
+package fjorde.items;
 
-public class PlayerItem
+import fjorde.Player;
+
+public abstract class PlayerItem
 {
     private String couleur;
     private Player proprio;
@@ -10,6 +12,8 @@ public class PlayerItem
         this.proprio = proprio;
         this.couleur = proprio.getCouleur();
     }
+
+    public abstract String getType();
 
     public String getCouleur()
     {
