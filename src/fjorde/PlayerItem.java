@@ -1,4 +1,4 @@
-package fjorde.items;
+package fjorde;
 
 import fjorde.Player;
 

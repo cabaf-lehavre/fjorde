@@ -1,6 +1,7 @@
 package fjorde.items;
 
 import fjorde.Player;
+import fjorde.PlayerItem;
 
 /**
  * @author Florentin BENARD
