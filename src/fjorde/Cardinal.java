@@ -1,5 +1,9 @@
 package fjorde;
 
+/**
+ * Cardinal represent the eight cardinal points.
+ * @author Antoine CHAUVIN
+ */
 public enum Cardinal {
     NORTH,
     NORTH_EAST,
