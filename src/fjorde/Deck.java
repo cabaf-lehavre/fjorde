@@ -17,6 +17,11 @@ public class Deck {
         Collections.shuffle(this.remaining);
     }
 
+    public Deck(int size) {
+        // no need to shuffle a list of random tiles
+        this.remaining = Tiles.samples(size);
+    }
+
     // Drawn last Tile in the deck
     public Tile draw() {
         return remaining.remove(0);
