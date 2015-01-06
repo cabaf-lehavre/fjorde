@@ -6,16 +6,16 @@ import java.util.List;
 
 /**
  * @author Alexandre BAPTISTE
+ * @author Antoine CHAUVIN
  */
 public class Deck {
 
     private List<Tile> remaining;
 
-    private Deck( List<Tile> remaining){
-        remaining = new LinkedList<Tile>();
-        Collections.shuffle(remaining);
+    public Deck(List<Tile> remaining) {
+        this.remaining = new LinkedList<Tile>(remaining);
+        Collections.shuffle(this.remaining);
     }
-
 
     // Drawn last Tile in the deck
     public Tile draw() {
@@ -23,7 +23,7 @@ public class Deck {
     }
 
     private List<Tile> draw(int nbTile) {
-        List<Tile> res = new LinkedList<>();
+        List<Tile> res = new LinkedList<Tile>();
         for (int i = 0; i < nbTile; i++) {
             res.add(draw());
         }
