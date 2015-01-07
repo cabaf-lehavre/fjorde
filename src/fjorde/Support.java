@@ -19,7 +19,6 @@ public class Support {
     private Tile tile;
     private List<Tile> TileList;
     private static Map<Tile, Image> hexaImg = new HashMap<>();
-    private Deck deck = new Deck()
 
     /*private void loadDeck() {
         try(BufferedReader reader = new BufferedReader(new FileReader(IMG_HEXA))){
@@ -38,17 +37,16 @@ public class Support {
     */
 
     private void loadImage(){
+        for(Tile tile: deck){
+            Image img = null;
+            try{
+                img = ImageIO.read(new File(String.format("./img/%s.png", Tile.getSymbol())));
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
 
-        Image img = null;
-        try{
-            img = ImageIO.read(new File(String.format("./img/%s.png", Tile.getSymbol())));
+            hexaImg.put(tile,img);
         }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-
-        hexaImg.put(#TODO);
-
-
     }
 }
