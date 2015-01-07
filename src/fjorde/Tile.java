@@ -131,4 +131,14 @@ public class Tile {
 	public void setItem(PlayerItem item) {
 		this.item = item;
 	}
+
+	public String getSymbol() {
+		StringBuilder res = new StringBuilder();
+
+		for (TileItem corner : corners) {
+			res.append(corner.getSymbol());
+		}
+
+		return res.toString();
+	}
 }
