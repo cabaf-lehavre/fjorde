@@ -27,7 +27,7 @@ public final class Tiles {
      * @return a non-null list of non-null tiles
      */
     public static List<Tile> samples(int n, Random random) {
-        List<Tile> samples = new LinkedList<Tile>();
+        List<Tile> samples = new LinkedList <Tile>();
         for (int i = 0; i < n; i++) {
             samples.add(sample(random));
         }
