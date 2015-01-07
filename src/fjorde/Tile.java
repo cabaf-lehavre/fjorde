@@ -13,21 +13,22 @@ public class Tile {
 	 */
 	public static final int CORNERS = 6;
 
-	private TileItem[] items;
+	private TileItem[] corners;
 	private Tile[] neighbours;
+	private PlayerItem item;
 
 	/**
 	 * Create a Tile
-	 * @param items an array of non-null items
+	 * @param corners an array of non-null corners
 	 * @param neighbours an array of nullable tile
 	 */
-	public Tile(TileItem[] items, Tile[] neighbours) {
-		this.items = items;
+	public Tile(TileItem[] corners, Tile[] neighbours) {
+		this.corners = corners;
 		this.neighbours = neighbours;
 	}
 
 	/**
-	 * Create a Tile with sample items and no neighbours
+	 * Create a Tile with sample corners and no neighbours
 	 */
 	public Tile(Random random) {
 		this(TileItems.samples(CORNERS, random), new Tile[CORNERS]);
@@ -38,8 +39,8 @@ public class Tile {
 	 * @param i an integer ranged between 0 and {@link fjorde.Tile#CORNERS}
 	 * @return a non-null item
 	 */
-	public TileItem getItem(int i) {
-		return items[i];
+	public TileItem getCorner(int i) {
+		return corners[i];
 	}
 
 	/**
@@ -47,7 +48,7 @@ public class Tile {
 	 * @param c a non-null cardinal point different of EAST and WEST
 	 * @return a non-null item
 	 */
-	public TileItem getItem(Cardinal c) {
+	public TileItem getCorner(Cardinal c) {
 		// forbid EAST and WEST
 		if (c == Cardinal.EAST || c == Cardinal.WEST) {
 			throw new IllegalArgumentException();
@@ -56,11 +57,11 @@ public class Tile {
 		// align indices
 		int i = c.ordinal();
 		if (i < 2) {
-			return getItem(i);
+			return getCorner(i);
 		} else if (i < 6) {
-			return getItem(i - 1);
+			return getCorner(i - 1);
 		} else {
-			return getItem(i - 2);
+			return getCorner(i - 2);
 		}
 	}
 
@@ -113,5 +114,21 @@ public class Tile {
 
 		// TODO
 		return true;
+	}
+
+	/**
+	 * Get the item present on this tile
+	 * @return a nullable item
+	 */
+	public PlayerItem getItem() {
+		return item;
+	}
+
+	/**
+	 * Set the item present on this tile
+	 * @param item a nullable item
+	 */
+	public void setItem(PlayerItem item) {
+		this.item = item;
 	}
 }
