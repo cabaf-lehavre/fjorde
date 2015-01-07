@@ -17,30 +17,20 @@ public class Support {
 
     public static final int nbTiles = 40;
     private Tile tile;
-    private List<Tile> TileList;
+    private List<Tile> tileList;
+    private Deck deck;
     private static Map<Tile, Image> hexaImg = new HashMap<>();
 
-    /*private void loadDeck() {
-        try(BufferedReader reader = new BufferedReader(new FileReader(IMG_HEXA))){
-            String content = reader.readLine();
+    private void loadDeck() {
+        tileList = Tiles.samples(40);
+        deck = new Deck(tileList);    }
 
-            for(int i=0; i<content.length(); i++) {
-                String part = content.substring(i,i+1);
-
-
-            }
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-    }
-    */
 
     private void loadImage(){
         for(Tile tile: deck){
             Image img = null;
             try{
-                img = ImageIO.read(new File(String.format("./img/%s.png", Tile.getSymbol())));
+                img = ImageIO.read(new File(String.format("./img/%s.png", tile.getSymbol())));
             }
             catch(IOException e){
                 e.printStackTrace();
