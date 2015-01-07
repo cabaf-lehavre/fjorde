@@ -13,6 +13,8 @@ import java.util.Random;
 public final class TileItems {
     private TileItems() {}
 
+    public static final int SEA = 1, PLAIN = 2, MOUNTAIN = 3;
+
     public static Sea createSea() {
         return new Sea();
     }
@@ -33,9 +35,9 @@ public final class TileItems {
      */
     public static TileItem create(int n) {
         switch (n) {
-            case 1: return createSea();
-            case 2: return createPlain();
-            case 3: return createMountain();
+            case SEA:      return createSea();
+            case PLAIN:    return createPlain();
+            case MOUNTAIN: return createMountain();
 
             default:
                 throw new IllegalArgumentException(String.format(
