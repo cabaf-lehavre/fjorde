@@ -26,7 +26,7 @@ public class Support {
         deck = new Deck(tileList);    }
 
 
-    private void loadImage(){
+    /*private void loadImage(){
         for(Tile tile: deck){
             Image img = null;
             try{
@@ -38,5 +38,5 @@ public class Support {
 
             hexaImg.put(tile,img);
         }
-    }
+    }*/
 }
