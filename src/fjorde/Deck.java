@@ -27,6 +27,9 @@ public class Deck {
         return remaining.remove(0);
     }
 
+    public void deposit(Tile tile){
+        remaining.add(tile);
+    }
     private List<Tile> draw(int nbTile) {
         List<Tile> res = new LinkedList<Tile>();
         for (int i = 0; i < nbTile; i++) {
