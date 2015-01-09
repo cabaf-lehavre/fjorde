@@ -19,4 +19,11 @@ public final class Assert {
                 "\"%s\" != \"%s\": %s", left, right, msg));
         }
     }
+
+    public static void assertEquals(int left, int right, String msg) {
+        if (left != right) {
+            throw new AssertionError(String.format(
+                    "%d != %d: %s", left, right, msg));
+        }
+    }
 }
