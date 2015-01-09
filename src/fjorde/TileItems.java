@@ -52,7 +52,7 @@ public final class TileItems {
      * @return a non-null item
      */
     public static TileItem sample(Random random) {
-        return create(random.nextInt(3));
+        return create(random.nextInt(3) + 1);
     }
 
     /**
