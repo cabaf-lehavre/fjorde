@@ -4,21 +4,20 @@
 
 import fjorde.Deck;
 import fjorde.Tile;
-import fjorde.Tiles;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.event.MouseAdapter;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.*;
 
 public class Hexagone extends JFrame {
 
     private Color[] tabCoul = {Color.RED, Color.WHITE, Color.BLACK, Color.GREEN, Color.YELLOW, Color.CYAN, Color.MAGENTA, Color.LIGHT_GRAY, Color.BLUE };
     private Plateau panelPlateau;
     private JPanel panelPioches;
+    private JPanel panelClosedDraw;
+    private JPanel panelOpenedDraw;
+    private JPanel panelJailsPawn;
     private java.util.List<Tile> tileList;
     private Deck deck;
 
@@ -35,7 +34,13 @@ public class Hexagone extends JFrame {
         add(panelPlateau);
         panelPlateau.addMouseListener(localGestionSouris);
 
-        panelPioches = new JPanel(new GridLayout(2, 1));
+        panelPioches = new JPanel(new GridLayout(3, 1));
+        panelClosedDraw = new ClosedDraw();
+        panelOpenedDraw = new OpenedDraw();
+        panelJailsPawn = new JailsPawn();
+        panelPioches.add(panelClosedDraw);
+        panelPioches.add(panelOpenedDraw);
+        panelPioches.add(panelJailsPawn);
         add(panelPioches, BorderLayout.EAST);
         setVisible(true);
     }
