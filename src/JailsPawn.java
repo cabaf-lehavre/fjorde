@@ -1,4 +1,3 @@
-import com.sun.xml.internal.bind.v2.TODO;
 import fjorde.Deck;
 
 import javax.swing.*;
@@ -28,8 +27,8 @@ public class JailsPawn extends JPanel implements ActionListener{
         pawnButton = new JButton();
         jailButton.setBackground(Color.WHITE);
         pawnButton.setBackground(Color.WHITE);
-        ImageIcon jailIcon = new ImageIcon("C:\\Users\\Hawk\\Projects\\Fjorde\\fjorde\\img\\jail.png");
-        ImageIcon pawnIcon  = new ImageIcon("C:\\Users\\Hawk\\Projects\\Fjorde\\fjorde\\img\\pawn.png");
+        ImageIcon jailIcon = new ImageIcon("img/jail.png");
+        ImageIcon pawnIcon  = new ImageIcon("img/pawn.png");
         jailButton.setIcon(jailIcon);
         remainingJails = new JLabel("    x4");
         pawnButton.setIcon(pawnIcon);

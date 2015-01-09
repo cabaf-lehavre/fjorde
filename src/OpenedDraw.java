@@ -1,4 +1,3 @@
-import com.sun.xml.internal.bind.v2.TODO;
 import fjorde.Deck;
 
 import javax.swing.*;
@@ -23,8 +22,8 @@ public class OpenedDraw extends JPanel implements ActionListener{
         nextTile = new JButton();
         previousTile.setBackground(Color.WHITE);
         nextTile.setBackground(Color.WHITE);
-        ImageIcon previousArrow = new ImageIcon("C:\\Users\\Hawk\\Projects\\Fjorde\\fjorde\\img\\previousArrow.png");
-        ImageIcon nextArrow = new ImageIcon("C:\\Users\\Hawk\\Projects\\Fjorde\\fjorde\\img\\nextArrow.jpg");
+        ImageIcon previousArrow = new ImageIcon("img/previousArrow.png");
+        ImageIcon nextArrow = new ImageIcon("img/nextArrow.jpg");
         previousTile.setIcon(previousArrow);
         nextTile.setIcon(nextArrow);
         add(previousTile);

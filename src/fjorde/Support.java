@@ -1,12 +1,6 @@
 package fjorde;
-import com.sun.xml.internal.bind.v2.TODO;
-import sun.awt.Symbol;
-
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.*;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +13,7 @@ public class Support {
     private Tile tile;
     private List<Tile> tileList;
     private Deck deck;
-    private static Map<Tile, Image> hexaImg = new HashMap<>();
+    private static Map<Tile, Image> hexaImg = new HashMap<Tile, Image>();
 
     private void loadDeck() {
         tileList = Tiles.samples(40);
