@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-=======
+
 import fjorde.Deck;
 import fjorde.Textures;
 import fjorde.Tile;
->>>>>>> dd92e55bdf383fabb61363d64912c008b77aa562
 
 import fjorde.Tile;
 import javax.swing.*;

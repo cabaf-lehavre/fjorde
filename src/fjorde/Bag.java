@@ -1,21 +1,40 @@
 package fjorde;
 
+import fjorde.items.Jail;
+import fjorde.items.Pawn;
+
 import java.util.List;
 
 /**
  * @author Alexandre BAPTISTE
+ * @author Antoine CHAUVIN
  */
 public class Bag {
 
-    private List<Items> remaining;
-    private int i = 0 , j =0;
+    private List<PlayerItem> remaining;
+    private final Player player;
+    private int remainingJails;
+    private int remainingPawns;
+    private int i=0, j=0;
 
-    public Bag(){
-        while( i < 3 ){
-            remaining.add(new Items(true,false));
-        }
-        while( j < 19 ) {
-            remaining.add(new Items(false,true));
-        }
+
+    public Bag( Player player, int remainingJails, int remainingPawns ){
+        this.player = player;
+        this.remainingJails = remainingJails;
+        this.remainingPawns = remainingPawns;
+
+    }
+    public Pawn getPawn() {
+        remainingPawns --;
+        return new Pawn(player);
+    }
+
+    public Jail getJail() {
+        remainingJails --;
+        return new Jail(player);
+    }
+
+    public int getSize(){
+        return remaining.size();
     }
 }
