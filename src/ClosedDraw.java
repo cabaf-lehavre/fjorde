@@ -1,31 +1,31 @@
 import fjorde.Deck;
-import fjorde.Textures;
 import fjorde.Tile;
-import fjorde.Tiles;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.Map;
-
 
 /**
  * @author Alexandre BAPTISTE
  */
+
 public class ClosedDraw extends JPanel implements ActionListener{
 
     private JButton drawButton;
     private JButton depositButton;
     JButton tileButton;
-    private Deck closedDeck;
+    private Deck closedDeck = new Deck(40);
     private Deck openedDeck;
 
     public void actionPerformed(ActionEvent e) {
 
+        if ( e.getSource() == tileButton ) {
+
+        }
+
         if ( e.getSource() == drawButton ) {
-            closedDeck.draw();
+            Tile tile = closedDeck.draw();
+            tileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
             repaint();
         }
 
@@ -37,21 +37,22 @@ public class ClosedDraw extends JPanel implements ActionListener{
     public Deck getOpenedDeck(){ return this.openedDeck; }
 
     public ClosedDraw() {
-        closedDeck = new Deck(40);
-        Map<String, Image> textures = Textures.load(new File("img"));
-        Tile tile = closedDeck.draw();
-        Image texture = textures.get(tile.getSymbol() + ".png");
+        setLayout(null);
+        tileButton = new JButton( new ImageIcon("img/MMPSSP.png"));
+        tileButton.setBackground(Color.WHITE);
 
-        setLayout(new GridLayout(2,1));
-        tileButton = new JButton( new ImageIcon(texture));
-        drawButton = new JButton("Draw");
+        drawButton    = new JButton("Draw");
         depositButton = new JButton("Deposit");
+
+        tileButton.setBounds(55,5,50,50);
+        drawButton.setBounds(10,60,70,40);
+        depositButton.setBounds(83,60,70,40);
 
         add(tileButton);
         add(drawButton);
         add(depositButton);
+
         drawButton.addActionListener(this);
         depositButton.addActionListener(this);
     }
-
 }

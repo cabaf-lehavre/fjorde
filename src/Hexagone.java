@@ -12,27 +12,27 @@ import java.awt.event.MouseAdapter;
 
 public class Hexagone extends JFrame {
 
-    private Color[] tabCoul = {Color.RED, Color.WHITE, Color.BLACK, Color.GREEN, Color.YELLOW, Color.CYAN, Color.MAGENTA, Color.LIGHT_GRAY, Color.BLUE };
-    private Plateau panelPlateau;
-    private JPanel panelPioches;
-    private JPanel panelClosedDraw;
-    private JPanel panelOpenedDraw;
-    private JPanel panelJailsPawn;
+    Color[] tabCoul = {Color.RED, Color.WHITE, Color.BLACK, Color.GREEN, Color.YELLOW, Color.CYAN, Color.MAGENTA, Color.LIGHT_GRAY, Color.BLUE };
+    Plateau panelPlateau;
+    JPanel panelPioches;
+    JPanel panelClosedDraw;
+    JPanel panelOpenedDraw;
+    JPanel panelJailsPawn;
     private java.util.List<Tile> tileList;
     private Deck deck;
 
     public Hexagone() {
         setTitle("Fjorde");
-        setLocation(200, 200);
+        setLocation(1250, 0);
         setSize(500,500);
         setDefaultCloseOperation(3);
-        GestionSouris localGestionSouris = new GestionSouris();
+        mouseManager localMouseManager = new mouseManager();
 
         panelPlateau = new Plateau();
         panelPlateau.setBackground(tabCoul[1]);
         panelPlateau.setLayout(null);
         add(panelPlateau);
-        panelPlateau.addMouseListener(localGestionSouris);
+        panelPlateau.addMouseListener(localMouseManager);
 
         panelPioches = new JPanel(new GridLayout(3, 1));
         panelClosedDraw = new ClosedDraw();
@@ -45,9 +45,9 @@ public class Hexagone extends JFrame {
         setVisible(true);
     }
 
-    private class GestionSouris extends MouseAdapter
+    private class mouseManager extends MouseAdapter
     {
-        private GestionSouris() {}
+        private mouseManager() {}
 
         public void mousePressed(MouseEvent paramMouseEvent)
         {
@@ -58,6 +58,6 @@ public class Hexagone extends JFrame {
     }
 
     public static void main(String[] args) {
-        Hexagone hex = new Hexagone();
+        new Hexagone();
     }
 }
