@@ -31,12 +31,27 @@ public final class Textures {
 
             try {
                 BufferedImage img = ImageIO.read(child);
-                textures.put(child.getName(), img);
+                String name = stripExt(child.getName());
+                textures.put(name, img);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
 
         return textures;
+    }
+
+    private static String stripExt(String filename) {
+        int lo = filename.lastIndexOf('/');
+        if (lo < 0) {
+            lo = 0;
+        }
+
+        int hi = filename.lastIndexOf('.');
+        if (hi < lo) {
+            hi = filename.length() + 1;
+        }
+
+        return filename.substring(lo, hi);
     }
 }
