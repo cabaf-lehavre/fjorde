@@ -30,6 +30,7 @@ public class Deck {
     public void deposit(Tile tile){
         remaining.add(tile);
     }
+
     private List<Tile> draw(int nbTile) {
         List<Tile> res = new LinkedList<Tile>();
         for (int i = 0; i < nbTile; i++) {
@@ -39,5 +40,7 @@ public class Deck {
     }
 
     private int getRemainingTiles() { return remaining.size(); }
+
+    private int getSize() { return remaining.size(); }
 }
 
