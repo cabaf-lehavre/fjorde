@@ -27,8 +27,6 @@ public class Deck {
         return remaining.remove(0);
     }
 
-    public Tile getTile(int i){ return remaining.get(i); }
-
     public void deposit(Tile tile){
         remaining.add(tile);
     }
@@ -41,7 +39,9 @@ public class Deck {
         return res;
     }
 
-    public int getRemainingTiles() { return remaining.size(); }
+    public Tile getTile(int i) {
+        return remaining.get(i);
+    }
 
     public int getSize() { return remaining.size(); }
 }

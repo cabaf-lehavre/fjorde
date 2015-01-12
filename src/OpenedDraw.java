@@ -1,9 +1,5 @@
-
-import fjorde.Deck;
-import fjorde.Textures;
 import fjorde.Tile;
 
-import fjorde.Tile;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
