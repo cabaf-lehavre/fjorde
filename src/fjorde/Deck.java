@@ -39,8 +39,10 @@ public class Deck {
         return res;
     }
 
-    private int getRemainingTiles() { return remaining.size(); }
+    public Tile getTile(int i) {
+        return remaining.get(i);
+    }
 
-    private int getSize() { return remaining.size(); }
+    public int getSize() { return remaining.size(); }
 }
 
