@@ -1,0 +1,78 @@
+package fjorde;
+
+import fjorde.items.Mountain;
+import fjorde.items.Plain;
+import fjorde.items.Sea;
+
+import java.util.Random;
+
+/**
+ * TileItems provide many utilities related to {@link fjorde.TileItem}.
+ * @author Antoine CHAUVIN
+ */
+public final class TileItems {
+    private TileItems() {}
+
+    public static Sea createSea() {
+        return new Sea();
+    }
+
+    public static Plain createPlain() {
+        return new Plain();
+    }
+
+    public static Mountain createMountain() {
+        return new Mountain();
+    }
+
+    /**
+     * Create an item using an index
+     * @param n an integer ranged between 1 and 3
+     * @return a non-null item
+     * @throws java.lang.IllegalArgumentException if given a invalid index
+     */
+    public static TileItem create(int n) {
+        switch (n) {
+            case 1: return createSea();
+            case 2: return createPlain();
+            case 3: return createMountain();
+
+            default:
+                throw new IllegalArgumentException(String.format(
+                    "%d is an invalid TileItem identifier",
+                        n));
+        }
+    }
+
+    /**
+     * Randomly create an item
+     * @param random a non-null random generator
+     * @return a non-null item
+     */
+    public static TileItem sample(Random random) {
+        return create(random.nextInt(3));
+    }
+
+    /**
+     * Randomly create multiple items
+     * @param n an integer representing the result's array length
+     * @param random a non-null random generator
+     * @return a non-null array of non-null item
+     */
+    public static TileItem[] samples(int n, Random random) {
+        TileItem[] items = new TileItem[6];
+        for (int i = 0; i < n; i++) {
+            items[i] = TileItems.sample(random);
+        }
+        return items;
+    }
+
+    /**
+     * Randomly create multiple items
+     * @param n an integer representing the result's array length
+     * @return a non-null array of non-null item
+     */
+    public static TileItem[] samples(int n) {
+        return samples(n, new Random(System.nanoTime()));
+    }
+}
