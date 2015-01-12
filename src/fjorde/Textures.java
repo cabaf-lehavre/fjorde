@@ -41,6 +41,15 @@ public final class Textures {
         return textures;
     }
 
+    /**
+     * Load all textures present in a directory
+     * @param baseDir a non-null string representing the base directory
+     * @return a non-null map from tile symbol to non-null texture
+     */
+    public static Map<String, Image> load(String baseDir) {
+        return load(new File(baseDir));
+    }
+
     private static String stripExt(String filename) {
         int lo = filename.lastIndexOf('/');
         if (lo < 0) {
