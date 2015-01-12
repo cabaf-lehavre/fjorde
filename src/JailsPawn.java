@@ -10,18 +10,17 @@ import java.awt.event.ActionListener;
  */
 public class JailsPawn extends JPanel implements ActionListener{
 
-    private JButton jailButton;
-    private JButton pawnButton;
-    private JLabel remainingJails;
-    private JLabel remainingPaws;
-    private GridLayout gridItems;
-    private Deck deck;
+    JButton jailButton;
+    JButton pawnButton;
+    JLabel remainingJails;
+    JLabel remainingPaws;
+    GridLayout gridItems;
+    Deck deck;
 
     public void actionPerformed(ActionEvent e) {
     }
 
     public JailsPawn() {
-        //deck = new Deck();
         setLayout(new GridLayout(2,1));
         jailButton = new JButton();
         pawnButton = new JButton();
