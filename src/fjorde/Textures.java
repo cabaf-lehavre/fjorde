@@ -27,7 +27,7 @@ public final class Textures {
     /**
      * Load all textures present in a directory
      * @param baseDir a non-null file
-     * @return a non-null map from tile symbol to non-null texture
+     * @return a non-null map from image name to non-null texture
      */
     public static Map<String, Image> load(File baseDir) {
         File[] children = baseDir.listFiles();
@@ -57,10 +57,18 @@ public final class Textures {
     /**
      * Load all textures present in a directory
      * @param baseDir a non-null string representing the base directory
-     * @return a non-null map from tile symbol to non-null texture
+     * @return a non-null map from image name to non-null texture
      */
     public static Map<String, Image> load(String baseDir) {
         return load(new File(baseDir));
+    }
+
+    /**
+     * Load all tile textures
+     * @return a non-null map from tile symbol to non-null texture
+     */
+    public static Map<String, Image> loadTiles() {
+        return load(getTilesBaseDir());
     }
 
     private static String stripExt(String filename) {
