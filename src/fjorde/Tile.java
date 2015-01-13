@@ -25,8 +25,12 @@ public class Tile {
 		this.neighbours = neighbours;
 	}
 
+	/**
+	 * Create a Tile without neighbours
+	 * @param corners an array of non-null corners
+	 */
 	public Tile(TileItem[] corners) {
-		this(corners, new Tile[CORNERS]);
+		this(corners, new Tile[corners.length]);
 	}
 
 	/**
