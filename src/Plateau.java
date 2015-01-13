@@ -1,6 +1,8 @@
 import fjorde.PlayerItem;
 import fjorde.Textures;
 import fjorde.Tile;
+import fjorde.items.Jail;
+import fjorde.items.Pawn;
 
 import javax.swing.*;
 import java.awt.*;
@@ -77,8 +79,27 @@ public class Plateau extends JPanel {
                     Rectangle bounds = p.getBounds();
 
                     g.drawImage(texture, (int) bounds.getX(), (int) bounds.getY(), null);
+
+                    PlayerItem item = t.getItem();
+                    if (item instanceof Jail) {
+                        drawJailInMiddleOf(g, bounds);
+                    } else if (item instanceof Pawn) {
+                        drawPawnInMiddleOf(g, bounds);
+                    }
                 }
             }
         }
+    }
+
+    private void drawJailInMiddleOf(Graphics g, Rectangle bounds) {
+        drawCircleInMiddleOf(g, bounds, 18);
+    }
+
+    private void drawPawnInMiddleOf(Graphics g, Rectangle bounds) {
+        drawCircleInMiddleOf(g, bounds, 10);
+    }
+
+    private void drawCircleInMiddleOf(Graphics g, Rectangle bounds, int size) {
+        g.fillOval((int) bounds.getCenterX() - size / 2, (int) bounds.getCenterY() - size / 2, size, size);
     }
 }
