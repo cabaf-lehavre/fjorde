@@ -14,12 +14,20 @@ public final class Tiles {
 
     static {
         File baseDir = Textures.getTilesBaseDir();
-        String[] children = baseDir.list();
+        File[] children = baseDir.listFiles();
         if (children == null) {
             throw new Error("COULDN'T FIND IMAGE DIRECTORY");
         }
 
-        SYMBOLS = Collections.unmodifiableList(Arrays.asList(children));
+        List<String> symbols = new ArrayList<String>();
+        for (File child : children) {
+            if (!child.getName().endsWith("png")) {
+                continue;
+            }
+            symbols.add(FileUtils.stripExt(child.getName()));
+        }
+
+        SYMBOLS = Collections.unmodifiableList(symbols);
     }
 
     /**
