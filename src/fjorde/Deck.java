@@ -31,8 +31,12 @@ public class Deck {
         return remaining.remove(i);
     }
 
+    public Tile peek() {
+        return remaining.get(0);
+    }
+
     public void deposit(Tile tile){
-        remaining.add(tile);
+        remaining.add(0, tile);
     }
 
     private List<Tile> draw(int nbTile) {

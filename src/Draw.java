@@ -25,18 +25,15 @@ public class Draw extends JPanel implements ActionListener {
     JButton closedTileButton;
 
     public void closedDraw() {
-        closed.draw();
-        Tile tile = closed.getTile(0);
-        closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
+        closed.draw(); // draw and forget
+        closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", closed.peek().getSymbol())));
         repaint();
     }
 
     public void closedDeposit(){
-        Tile tile = closed.draw();
-        opened.deposit(tile);
-        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", opened.getTile(0).getSymbol())));
-        closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
-        System.out.println(opened);
+        opened.deposit(closed.draw()); // draw and put in open deck
+        closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", closed.peek().getSymbol())));
+        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", opened.peek().getSymbol())));
         repaint();
     }
 
