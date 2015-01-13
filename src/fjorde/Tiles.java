@@ -13,14 +13,21 @@ public final class Tiles {
     private final static List<String> SYMBOLS;
 
     static {
-        String path = System.getProperty("fjorde.img.tiles", "img/tiles/");
-        File baseDir = new File(path);
-        String[] children = baseDir.list();
+        File baseDir = Textures.getTilesBaseDir();
+        File[] children = baseDir.listFiles();
         if (children == null) {
             throw new Error("COULDN'T FIND IMAGE DIRECTORY");
         }
 
-        SYMBOLS = Collections.unmodifiableList(Arrays.asList(children));
+        List<String> symbols = new ArrayList<String>();
+        for (File child : children) {
+            if (!child.getName().endsWith("png")) {
+                continue;
+            }
+            symbols.add(FileUtils.stripExt(child.getName()));
+        }
+
+        SYMBOLS = Collections.unmodifiableList(symbols);
     }
 
     /**
