@@ -155,6 +155,7 @@ public class Draw extends JPanel implements ActionListener {
             }
         } finally {
             clearDeckSelection();
+            updateSprites();
         }
     }
 

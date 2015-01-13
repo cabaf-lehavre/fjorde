@@ -2,6 +2,8 @@
  * @author Alexandre BAPTISTE
  */
 
+import fjorde.Tile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -47,8 +49,11 @@ public class Hexagone extends JFrame {
         public void mousePressed(MouseEvent paramMouseEvent)
         {
             if ( paramMouseEvent.getButton() == 1) {
-                panelPlateau.clic(paramMouseEvent.getX(), paramMouseEvent.getY(), draw.getSelectedTile());
-                draw.updateSprites();
+                Tile selectedTile = draw.getSelectedTile();
+                if (selectedTile != null) {
+                    panelPlateau.clic(paramMouseEvent.getX(), paramMouseEvent.getY(), selectedTile);
+                }
+
             }
         }
     }
