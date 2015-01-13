@@ -50,7 +50,7 @@ public class Hexagone extends JFrame {
         public void mousePressed(MouseEvent paramMouseEvent)
         {
             if ( paramMouseEvent.getButton() == 1) {
-                panelPlateau.clic(paramMouseEvent.getX(),paramMouseEvent.getY());
+                panelPlateau.clic(paramMouseEvent.getX(), paramMouseEvent.getY(), draw.getSelectedTile());
             }
         }
     }
