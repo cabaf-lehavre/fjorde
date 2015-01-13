@@ -36,13 +36,10 @@ public class Hexagone extends JFrame {
         panelPlateau.addMouseListener(localMouseManager);
 
         panelPioches = new JPanel(new GridLayout(2, 1));
-        panelClosedDraw = new ClosedDraw();
-        panelOpenedDraw = new OpenedDraw();
         panelJailsPawn = new JailsPawn();
         panelDraw = new Draw();
+
         panelPioches.add(panelDraw);
-        //panelPioches.add(panelClosedDraw);
-        //panelPioches.add(panelOpenedDraw);
         panelPioches.add(panelJailsPawn);
 
         add(panelPioches, BorderLayout.EAST);

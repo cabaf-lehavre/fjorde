@@ -30,6 +30,9 @@ public class Draw extends JPanel implements ActionListener {
 
     public void closedDeposit(){
         opened.deposit(closed.draw());
+        closedTileButton.setIcon(new ImageIcon(String.format("img/$s.png", closed.getTile(0).getSymbol())));
+        System.out.println(opened);
+        repaint();
     }
 
     public Tile previousOpened(){
