@@ -61,7 +61,9 @@ public class Draw extends JPanel implements ActionListener {
     public Draw(){
         setLayout(null);
 
-        closedTileButton = new JButton( new ImageIcon("img/MMPSSP.png"));
+        Tile closedInitTile = closed.getTile(0);
+        ImageIcon closedInitTileImage = new ImageIcon(String.format("img/%s.png", closedInitTile.getSymbol()));
+        closedTileButton = new JButton(closedInitTileImage);
         closedTileButton.setBackground(Color.WHITE);
 
         drawButton    = new JButton("Draw");
@@ -77,7 +79,7 @@ public class Draw extends JPanel implements ActionListener {
         openedTileButton.setBackground(Color.WHITE);
         previousTile.setIcon(new ImageIcon("img/previousArrow.png"));
         nextTile.setIcon(new ImageIcon("img/nextArrow.jpg"));
-        openedTileButton.setIcon(new ImageIcon("img/MMPPPM.png"));
+        //openedTileButton.setIcon(new ImageIcon("img/MMPPPM.png"));
 
 
         closedTileButton.setBounds(55,5,50,50);
