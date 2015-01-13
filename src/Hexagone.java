@@ -2,6 +2,7 @@
  * @author Alexandre BAPTISTE
  */
 
+import fjorde.PlayerItem;
 import fjorde.Tile;
 
 import javax.swing.*;
@@ -48,10 +49,18 @@ public class Hexagone extends JFrame {
 
         public void mousePressed(MouseEvent paramMouseEvent)
         {
+            int x = paramMouseEvent.getX(),
+                y = paramMouseEvent.getY();
+
             if ( paramMouseEvent.getButton() == 1) {
                 Tile selectedTile = draw.getSelectedTile();
                 if (selectedTile != null) {
-                    panelPlateau.clic(paramMouseEvent.getX(), paramMouseEvent.getY(), selectedTile);
+                    panelPlateau.clic(x, y, selectedTile);
+                }
+
+                PlayerItem selectedItem = jailsPawn.getSelectedItem();
+                if (selectedItem != null) {
+                    panelPlateau.clic(x, y, selectedItem);
                 }
 
             }
