@@ -42,6 +42,14 @@ public class Deck {
         remaining.add(0, tile);
     }
 
+    public void shiftRight() {
+        remaining.add(remaining.remove(0));
+    }
+
+    public void shiftLeft() {
+        remaining.add(0, remaining.remove(remaining.size() - 1));
+    }
+
     private List<Tile> draw(int nbTile) {
         List<Tile> res = new LinkedList<Tile>();
         for (int i = 0; i < nbTile; i++) {

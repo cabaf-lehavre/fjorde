@@ -12,7 +12,6 @@ public class Draw extends JPanel implements ActionListener {
 
     private Deck opened = new Deck(0);
     private Deck closed = new Deck(40);
-    private int deckPos;
     private Tile selectedTile;
     private boolean selectedTileFromOpened;
 
@@ -53,33 +52,13 @@ public class Draw extends JPanel implements ActionListener {
     }
 
     public void previousOpened(){
-        if (opened.getSize() == 0) {
-            return;
-        }
-
-        deckPos--;
-        if (deckPos < 0) {
-            deckPos = opened.getSize() - 1;
-        }
-
-        Tile tile = opened.getTile(deckPos);
-        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
-        repaint();
+        opened.shiftLeft();
+        updateSprites();
     }
 
     public void nextOpened(){
-        if (opened.getSize() == 0) {
-            return;
-        }
-
-        deckPos++;
-        if (deckPos >= opened.getSize()) {
-            deckPos = 0;
-        }
-
-        Tile tile = opened.getTile(deckPos);
-        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
-        repaint();
+        opened.shiftRight();
+        updateSprites();
     }
 
     public Draw(){
@@ -140,7 +119,7 @@ public class Draw extends JPanel implements ActionListener {
 
         if ( e.getSource() == openedTileButton ) {
             if (selectedTile == null) {
-                selectedTile = opened.drawAt(deckPos);
+                selectedTile = opened.draw();
                 selectedTileFromOpened = true;
             }
             // what if we already selected a tile?
