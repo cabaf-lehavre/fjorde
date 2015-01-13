@@ -2,23 +2,17 @@
  * @author Alexandre BAPTISTE
  */
 
-import fjorde.Deck;
-import fjorde.Tile;
-
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Hexagone extends JFrame {
 
-    Color[] tabCoul = {Color.RED, Color.WHITE, Color.BLACK, Color.GREEN, Color.YELLOW, Color.CYAN, Color.MAGENTA, Color.LIGHT_GRAY, Color.BLUE };
     Plateau panelPlateau;
     JPanel panelPioches;
     JailsPawn jailsPawn;
     Draw draw;
-    private java.util.List<Tile> tileList;
-    private Deck deck;
 
     public Hexagone() {
         setTitle("Fjorde");
@@ -28,7 +22,7 @@ public class Hexagone extends JFrame {
         mouseManager localMouseManager = new mouseManager();
 
         panelPlateau = new Plateau();
-        panelPlateau.setBackground(tabCoul[1]);
+        panelPlateau.setBackground(Color.white);
         panelPlateau.setLayout(null);
         add(panelPlateau);
         panelPlateau.addMouseListener(localMouseManager);
