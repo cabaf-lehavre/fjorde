@@ -151,7 +151,7 @@ public class Draw extends JPanel implements ActionListener {
             } else if (selectedDeck == 2) {
                 return closed.draw();
             } else {
-                throw new IllegalStateException("no deck selected");
+                return null;
             }
         } finally {
             clearDeckSelection();
