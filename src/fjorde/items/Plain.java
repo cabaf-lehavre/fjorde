@@ -8,4 +8,9 @@ public class Plain extends TileItem {
         // TODO
         return false;
     }
+
+    @Override
+    public String getSymbol() {
+        return "P";
+    }
 }

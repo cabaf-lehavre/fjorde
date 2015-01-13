@@ -8,4 +8,9 @@ public class Sea extends TileItem {
         // TODO
         return false;
     }
+
+    @Override
+    public String getSymbol() {
+        return "S";
+    }
 }

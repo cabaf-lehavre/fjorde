@@ -8,4 +8,9 @@ public class Mountain extends TileItem {
         // TODO
         return false;
     }
+
+    @Override
+    public String getSymbol() {
+        return "M";
+    }
 }
