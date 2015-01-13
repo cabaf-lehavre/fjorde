@@ -1,7 +1,6 @@
 import fjorde.Textures;
 import fjorde.Tile;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
@@ -10,7 +9,7 @@ public class Plateau extends JPanel {
 
     private Tile[][] tabT;
     private Polygon[][] tabP;
-    private Map<String, Image> textures = Textures.load("img");
+    private Map<String, Image> textures = Textures.loadTiles();
 
     public Plateau() {
         tabT = new Tile[50][50];
