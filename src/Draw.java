@@ -137,6 +137,9 @@ public class Draw extends JPanel implements ActionListener {
     }
 
     public Tile getSelectedTile() {
+        if (selectedTile == null) {
+            throw new IllegalStateException("no tile has been selected");
+        }
         Tile tile = selectedTile;
         selectedTile = null;
         return tile;
