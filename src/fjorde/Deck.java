@@ -32,6 +32,9 @@ public class Deck {
     }
 
     public Tile peek() {
+        if (remaining.isEmpty()) {
+            return null;
+        }
         return remaining.get(0);
     }
 
