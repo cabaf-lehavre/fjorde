@@ -26,6 +26,7 @@ public class JailsPawn extends JPanel implements ActionListener{
             if (buttonSelection != 1) {
                 buttonSelection = 1;
                 jailButton.setBackground(Color.red);
+                pawnButton.setBackground(Color.white);
             } else {
                 clearSelection();
             }
@@ -35,6 +36,7 @@ public class JailsPawn extends JPanel implements ActionListener{
             if (buttonSelection != 2) {
                 buttonSelection = 2;
                 pawnButton.setBackground(Color.red);
+                jailButton.setBackground(Color.white);
             } else {
                 clearSelection();
             }
