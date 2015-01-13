@@ -55,7 +55,7 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         deckPos++;
-        if (deckPos > opened.getSize()) {
+        if (deckPos >= opened.getSize()) {
             deckPos = 0;
         }
 
