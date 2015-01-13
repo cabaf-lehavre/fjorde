@@ -46,8 +46,8 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         deckPos--;
-        if (deckPos <= 0) {
-            deckPos = opened.getSize();
+        if (deckPos < 0) {
+            deckPos = opened.getSize() - 1;
         }
 
         Tile tile = opened.getTile(deckPos);
