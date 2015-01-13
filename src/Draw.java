@@ -26,7 +26,7 @@ public class Draw extends JPanel implements ActionListener {
 
     public void closedDraw() {
         Tile tile = closed.draw();
-        closedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
+        closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
         repaint();
     }
 
@@ -45,7 +45,7 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         Tile tile = opened.getTile(deckPos);
-        openedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
+        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
         repaint();
     }
 
@@ -60,7 +60,7 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         Tile tile = opened.getTile(deckPos);
-        openedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
+        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
         repaint();
     }
 
@@ -68,7 +68,7 @@ public class Draw extends JPanel implements ActionListener {
         setLayout(null);
 
         Tile closedInitTile = closed.getTile(0);
-        ImageIcon closedInitTileImage = new ImageIcon(String.format("img/%s.png", closedInitTile.getSymbol()));
+        ImageIcon closedInitTileImage = new ImageIcon(String.format("img/tiles/%s.png", closedInitTile.getSymbol()));
         closedTileButton = new JButton(closedInitTileImage);
         closedTileButton.setBackground(Color.WHITE);
 
