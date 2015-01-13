@@ -48,6 +48,7 @@ public class Hexagone extends JFrame {
         {
             if ( paramMouseEvent.getButton() == 1) {
                 panelPlateau.clic(paramMouseEvent.getX(), paramMouseEvent.getY(), draw.getSelectedTile());
+                draw.updateSprites();
             }
         }
     }
