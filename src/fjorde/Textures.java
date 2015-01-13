@@ -12,6 +12,19 @@ public final class Textures {
     private Textures() {}
 
     /**
+     * Get the default base directory containing tile textures
+     * @return a non-null file
+     */
+    public static File getTilesBaseDir() {
+        String path = System.getProperty("fjorde.img.tiles", "img/tiles/");
+        File file = new File(path);
+        if (!file.exists()) {
+            throw new Error("DIRECTORY CONTAINING TILE TEXTURES "+path+" DOESNT EXIST, PLEASE USE -Dfjorde.img.tiles PROPERTY");
+        }
+        return file;
+    }
+
+    /**
      * Load all textures present in a directory
      * @param baseDir a non-null file
      * @return a non-null map from tile symbol to non-null texture
