@@ -106,7 +106,8 @@ public class Draw extends JPanel implements ActionListener {
         nextTile.addActionListener(this);
         drawButton.addActionListener(this);
         depositButton.addActionListener(this);
-
+        openedTileButton.addActionListener(this);
+        closedTileButton.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
