@@ -116,15 +116,23 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         if ( e.getSource() == openedTileButton ) {
-            selectedDeck = 1;
-            openedTileButton.setBackground(Color.red);
-            closedTileButton.setBackground(Color.white);
+            if (selectedDeck != 1) {
+                selectedDeck = 1;
+                openedTileButton.setBackground(Color.red);
+                closedTileButton.setBackground(Color.white);
+            } else {
+                clearDeckSelection();
+            }
         }
 
         if ( e.getSource() == closedTileButton ) {
-            selectedDeck = 2;
-            openedTileButton.setBackground(Color.white);
-            closedTileButton.setBackground(Color.red);
+            if (selectedDeck != 2) {
+                selectedDeck = 2;
+                openedTileButton.setBackground(Color.white);
+                closedTileButton.setBackground(Color.red);
+            } else {
+                clearDeckSelection();
+            }
         }
 
         if ( e.getSource() == drawButton ) {
@@ -146,9 +154,13 @@ public class Draw extends JPanel implements ActionListener {
                 throw new IllegalStateException("no deck selected");
             }
         } finally {
-            selectedDeck = 0;
-            openedTileButton.setBackground(Color.white);
-            closedTileButton.setBackground(Color.white);
+            clearDeckSelection();
         }
+    }
+
+    public void clearDeckSelection() {
+        selectedDeck = 0;
+        openedTileButton.setBackground(Color.white);
+        closedTileButton.setBackground(Color.white);
     }
 }
