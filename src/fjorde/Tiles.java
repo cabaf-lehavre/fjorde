@@ -13,8 +13,7 @@ public final class Tiles {
     private final static List<String> SYMBOLS;
 
     static {
-        String path = System.getProperty("fjorde.img.tiles", "img/tiles/");
-        File baseDir = new File(path);
+        File baseDir = Textures.getTilesBaseDir();
         String[] children = baseDir.list();
         if (children == null) {
             throw new Error("COULDN'T FIND IMAGE DIRECTORY");
