@@ -32,7 +32,7 @@ public class Draw extends JPanel implements ActionListener {
 
     public void closedDeposit(){
         opened.deposit(closed.draw());
-        closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/$s.png", closed.getTile(0).getSymbol())));
+        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", opened.getTile(0).getSymbol())));
         System.out.println(opened);
         repaint();
     }
@@ -43,12 +43,12 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         deckPos--;
-        if (deckPos < 0) {
+        if (deckPos <= 0) {
             deckPos = opened.getSize();
         }
 
         Tile tile = opened.getTile(deckPos);
-        openedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
+        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
         repaint();
     }
 
@@ -63,7 +63,7 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         Tile tile = opened.getTile(deckPos);
-        openedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
+        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
         repaint();
     }
 
@@ -71,7 +71,7 @@ public class Draw extends JPanel implements ActionListener {
         setLayout(null);
 
         Tile closedInitTile = closed.getTile(0);
-        ImageIcon closedInitTileImage = new ImageIcon(String.format("img/%s.png", closedInitTile.getSymbol()));
+        ImageIcon closedInitTileImage = new ImageIcon(String.format("img/tiles/%s.png", closedInitTile.getSymbol()));
         closedTileButton = new JButton(closedInitTileImage);
         closedTileButton.setBackground(Color.WHITE);
 
