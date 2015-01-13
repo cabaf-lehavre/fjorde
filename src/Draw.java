@@ -35,8 +35,20 @@ public class Draw extends JPanel implements ActionListener {
     }
 
     public void updateSprites() {
-        closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", closed.peek().getSymbol())));
-        openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", opened.peek().getSymbol())));
+        Tile cls = closed.peek();
+        if (cls != null) {
+            closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", cls.getSymbol())));
+        } else {
+            closedTileButton.setIcon(null);
+        }
+
+        Tile opn = opened.peek();
+        if (opn != null) {
+            openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", opn.getSymbol())));
+        } else {
+            openedTileButton.setIcon(null);
+        }
+
         repaint();
     }
 
