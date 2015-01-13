@@ -31,25 +31,31 @@ public class JailsPawn extends JPanel implements ActionListener{
     }
 
     public JailsPawn() {
-
         setLayout(new GridLayout(2,1));
 
         jailButton = new JButton();
         pawnButton = new JButton();
+        remainingJails = new JLabel();
+        remainingPaws = new JLabel();
 
         jailButton.setBackground(Color.WHITE);
         pawnButton.setBackground(Color.WHITE);
-
         jailButton.setIcon(new ImageIcon("img/jail.png"));
-        remainingJails = new JLabel("       x    " + bag.getRemainingJails() );
         pawnButton.setIcon(new ImageIcon("img/pawn.png"));
-        remainingPaws = new JLabel("        x   "  + bag.getRemainingPawns() );
+
+        updateCounters();
 
         add(jailButton);
         add(remainingJails);
         add(pawnButton);
         add(remainingPaws);
+
         jailButton.addActionListener(this);
+    }
+
+    private void updateCounters() {
+        remainingJails.setText("       x    " + bag.getRemainingJails());
+        remainingPaws.setText("        x   " + bag.getRemainingPawns());
     }
 
 }
