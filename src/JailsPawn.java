@@ -18,15 +18,26 @@ public class JailsPawn extends JPanel implements ActionListener{
     JLabel remainingPaws;
     Player player = new Player(1,"Stephen","Noir");
     Bag bag = new Bag(player,4,20);
+    int buttonSelection;
 
 
     public void actionPerformed(ActionEvent e) {
         if ( e.getSource() == jailButton ) {
-
+            if (buttonSelection != 1) {
+                buttonSelection = 1;
+                jailButton.setBackground(Color.red);
+            } else {
+                clearSelection();
+            }
         }
 
         if ( e.getSource() == pawnButton ) {
-
+            if (buttonSelection != 2) {
+                buttonSelection = 2;
+                pawnButton.setBackground(Color.red);
+            } else {
+                clearSelection();
+            }
         }
     }
 
@@ -56,6 +67,12 @@ public class JailsPawn extends JPanel implements ActionListener{
     private void updateCounters() {
         remainingJails.setText("       x    " + bag.getRemainingJails());
         remainingPaws.setText("        x   " + bag.getRemainingPawns());
+    }
+
+    private void clearSelection() {
+        buttonSelection = 0;
+        jailButton.setBackground(Color.white);
+        pawnButton.setBackground(Color.white);
     }
 
 }
