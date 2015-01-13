@@ -1,7 +1,5 @@
 package fjorde;
 
-import java.util.Random;
-
 /**
  * A Tile contains multiple {@link fjorde.TileItem} and multiple neighbour Tile.
  * An absence of neighbour is notified by {@code null}.
@@ -25,13 +23,6 @@ public class Tile {
 	public Tile(TileItem[] corners, Tile[] neighbours) {
 		this.corners = corners;
 		this.neighbours = neighbours;
-	}
-
-	/**
-	 * Create a Tile with sample corners and no neighbours
-	 */
-	public Tile(Random random) {
-		this(TileItems.samples(CORNERS, random), new Tile[CORNERS]);
 	}
 
 	/**
