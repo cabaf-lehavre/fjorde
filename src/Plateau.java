@@ -1,3 +1,4 @@
+import fjorde.PlayerItem;
 import fjorde.Textures;
 import fjorde.Tile;
 
@@ -40,6 +41,24 @@ public class Plateau extends JPanel {
                     }
                     break;
                 }
+            }
+        }
+    }
+
+    public void clic(int x, int y, PlayerItem item) {
+        for (int i = 0; i < 50; i++) {
+            for (int j = 0; j < 50; j++) {
+                Polygon p = tabP[i][j];
+                if (!p.contains(x, y)) {
+                    continue;
+                }
+
+                Tile t = tabT[i][j];
+                if (t != null) {
+                    t.setItem(item);
+                    repaint();
+                }
+                break;
             }
         }
     }
