@@ -1,5 +1,7 @@
 package fjorde;
 
+import java.util.Random;
+
 import static fjorde.TileItems.MOUNTAIN;
 import static unit.Assert.assertEquals;
 
@@ -10,6 +12,8 @@ public class TileTest {
                              MOUNTAIN, MOUNTAIN, MOUNTAIN);
 
         assertEquals(tile.getSymbol(), "MMMMMM", "wrong symbol");
+
+        Tile sample = Tiles.sample(new Random(System.nanoTime()));
 
         System.out.println("success");
     }
