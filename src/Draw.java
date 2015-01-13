@@ -13,6 +13,8 @@ public class Draw extends JPanel implements ActionListener {
     private Deck opened = new Deck(0);
     private Deck closed = new Deck(40);
     private int deckPos;
+    private Tile selectedTile;
+    private boolean selectedTileFromOpened;
 
     JButton previousTile;
     JButton nextTile;
@@ -35,34 +37,42 @@ public class Draw extends JPanel implements ActionListener {
         repaint();
     }
 
-    public Tile previousOpened(){
+    public void previousOpened(){
+        if (opened.getSize() == 0) {
+            return;
+        }
+
         deckPos--;
-        if (deckPos <= opened.getSize() ) {
-            deckPos = 0;
+        if (deckPos < 0) {
+            deckPos = opened.getSize();
         }
 
         Tile tile = opened.getTile(deckPos);
         openedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
         repaint();
-        return tile;
     }
 
-    public Tile nextOpened(){
+    public void nextOpened(){
+        if (opened.getSize() == 0) {
+            return;
+        }
+
         deckPos++;
-        if (deckPos >= opened.getSize()) {
+        if (deckPos > opened.getSize()) {
             deckPos = 0;
         }
 
         Tile tile = opened.getTile(deckPos);
         openedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
         repaint();
-        return tile;
     }
 
     public Draw(){
         setLayout(null);
 
-        closedTileButton = new JButton( new ImageIcon("img/MMPSSP.png"));
+        Tile closedInitTile = closed.getTile(0);
+        ImageIcon closedInitTileImage = new ImageIcon(String.format("img/%s.png", closedInitTile.getSymbol()));
+        closedTileButton = new JButton(closedInitTileImage);
         closedTileButton.setBackground(Color.WHITE);
 
         drawButton    = new JButton("Draw");
@@ -78,7 +88,7 @@ public class Draw extends JPanel implements ActionListener {
         openedTileButton.setBackground(Color.WHITE);
         previousTile.setIcon(new ImageIcon("img/previousArrow.png"));
         nextTile.setIcon(new ImageIcon("img/nextArrow.jpg"));
-        openedTileButton.setIcon(new ImageIcon("img/MMPPPM.png"));
+        //openedTileButton.setIcon(new ImageIcon("img/MMPPPM.png"));
 
 
         closedTileButton.setBounds(55,5,50,50);
@@ -113,11 +123,19 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         if ( e.getSource() == openedTileButton ) {
-
+            if (selectedTile == null) {
+                selectedTile = opened.draw();
+                selectedTileFromOpened = true;
+            }
+            // what if we already selected a tile?
         }
 
         if ( e.getSource() == closedTileButton ) {
-
+            if (selectedTile == null) {
+                selectedTile = closed.draw();
+                selectedTileFromOpened = false;
+            }
+            // what if we already selected a tile?
         }
 
         if ( e.getSource() == drawButton ) {
@@ -127,5 +145,14 @@ public class Draw extends JPanel implements ActionListener {
         if ( e.getSource() == depositButton ) {
             closedDeposit();
         }
+    }
+
+    public Tile getSelectedTile() {
+        if (selectedTile == null) {
+            throw new IllegalStateException("no tile has been selected");
+        }
+        Tile tile = selectedTile;
+        selectedTile = null;
+        return tile;
     }
 }

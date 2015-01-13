@@ -2,25 +2,17 @@
  * @author Alexandre BAPTISTE
  */
 
-import fjorde.Deck;
-import fjorde.Tile;
-
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Hexagone extends JFrame {
 
-    Color[] tabCoul = {Color.RED, Color.WHITE, Color.BLACK, Color.GREEN, Color.YELLOW, Color.CYAN, Color.MAGENTA, Color.LIGHT_GRAY, Color.BLUE };
     Plateau panelPlateau;
     JPanel panelPioches;
-    JPanel panelClosedDraw;
-    JPanel panelOpenedDraw;
-    JPanel panelJailsPawn;
-    JPanel panelDraw;
-    private java.util.List<Tile> tileList;
-    private Deck deck;
+    JailsPawn jailsPawn;
+    Draw draw;
 
     public Hexagone() {
         setTitle("Fjorde");
@@ -30,17 +22,24 @@ public class Hexagone extends JFrame {
         mouseManager localMouseManager = new mouseManager();
 
         panelPlateau = new Plateau();
-        panelPlateau.setBackground(tabCoul[1]);
+        panelPlateau.setBackground(Color.white);
         panelPlateau.setLayout(null);
         add(panelPlateau);
         panelPlateau.addMouseListener(localMouseManager);
 
         panelPioches = new JPanel(new GridLayout(2, 1));
+<<<<<<< HEAD
         panelJailsPawn = new JailsPawn();
         panelDraw = new Draw();
 
         panelPioches.add(panelDraw);
         panelPioches.add(panelJailsPawn);
+=======
+        jailsPawn = new JailsPawn();
+        draw = new Draw();
+        panelPioches.add(draw);
+        panelPioches.add(jailsPawn);
+>>>>>>> f543caa973f2698a4b445d173f2d33348440b4d1
 
         add(panelPioches, BorderLayout.EAST);
         setVisible(true);
@@ -53,7 +52,7 @@ public class Hexagone extends JFrame {
         public void mousePressed(MouseEvent paramMouseEvent)
         {
             if ( paramMouseEvent.getButton() == 1) {
-                panelPlateau.clic(paramMouseEvent.getX(),paramMouseEvent.getY());
+                panelPlateau.clic(paramMouseEvent.getX(), paramMouseEvent.getY(), draw.getSelectedTile());
             }
         }
     }
