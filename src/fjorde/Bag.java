@@ -24,6 +24,19 @@ public class Bag {
         this.remainingPawns = remainingPawns;
 
     }
+
+    public int getRemainingJails(){
+        return remainingJails;
+    }
+
+    public int getRemainingPawns() {
+        return remainingPawns;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
     public Pawn getPawn() {
         remainingPawns --;
         return new Pawn(player);

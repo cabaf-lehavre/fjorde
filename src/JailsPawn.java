@@ -1,4 +1,6 @@
-import fjorde.Deck;
+import fjorde.Bag;
+import fjorde.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,9 @@ public class JailsPawn extends JPanel implements ActionListener{
     JButton pawnButton;
     JLabel remainingJails;
     JLabel remainingPaws;
-    Deck deck;
+    Player player = new Player(1,"Stephen","Noir");
+    Bag bag = new Bag(player,4,20);
+
 
     public void actionPerformed(ActionEvent e) {
         if ( e.getSource() == jailButton ) {
@@ -37,20 +41,9 @@ public class JailsPawn extends JPanel implements ActionListener{
         pawnButton.setBackground(Color.WHITE);
 
         jailButton.setIcon(new ImageIcon("img/jail.png"));
-        remainingJails = new JLabel("       x    4");
+        remainingJails = new JLabel("       x    " + bag.getRemainingJails() );
         pawnButton.setIcon(new ImageIcon("img/pawn.png"));
-        remainingPaws = new JLabel("        x 20");
-
-
-        add(jailButton,BorderLayout.CENTER);
-
-        ImageIcon jailIcon = new ImageIcon("img/jail.png");
-        ImageIcon pawnIcon  = new ImageIcon("img/pawn.png");
-        jailButton.setIcon(jailIcon);
-        remainingJails = new JLabel("    x4");
-        pawnButton.setIcon(pawnIcon);
-        remainingPaws = new JLabel("    x20");
-        jailButton.setBounds(250,250,50,50);
+        remainingPaws = new JLabel("        x   "  + bag.getRemainingPawns() );
 
         add(jailButton);
         add(remainingJails);
