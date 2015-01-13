@@ -27,6 +27,10 @@ public class Deck {
         return remaining.remove(0);
     }
 
+    public Tile drawAt(int i) {
+        return remaining.remove(i);
+    }
+
     public void deposit(Tile tile){
         remaining.add(tile);
     }

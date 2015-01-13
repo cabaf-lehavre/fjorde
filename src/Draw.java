@@ -122,7 +122,7 @@ public class Draw extends JPanel implements ActionListener {
 
         if ( e.getSource() == openedTileButton ) {
             if (selectedTile == null) {
-                selectedTile = opened.draw();
+                selectedTile = opened.drawAt(deckPos);
                 selectedTileFromOpened = true;
             }
             // what if we already selected a tile?
