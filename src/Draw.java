@@ -64,25 +64,21 @@ public class Draw extends JPanel implements ActionListener {
     public Draw(){
         setLayout(null);
 
-        Tile closedInitTile = closed.getTile(0);
-        ImageIcon closedInitTileImage = new ImageIcon(String.format("img/tiles/%s.png", closedInitTile.getSymbol()));
-        closedTileButton = new JButton(closedInitTileImage);
-        closedTileButton.setBackground(Color.WHITE);
-
         drawButton    = new JButton("Draw");
         depositButton = new JButton("Deposit");
 
-        previousTile = new JButton();
-        nextTile     = new JButton();
-        openedTileButton   = new JButton();
+        previousTile     = new JButton();
+        nextTile         = new JButton();
+        closedTileButton = new JButton();
+        openedTileButton = new JButton();
 
 
         previousTile.setBackground(Color.WHITE);
         nextTile.setBackground(Color.WHITE);
+        closedTileButton.setBackground(Color.WHITE);
         openedTileButton.setBackground(Color.WHITE);
         previousTile.setIcon(new ImageIcon("img/previousArrow.png"));
         nextTile.setIcon(new ImageIcon("img/nextArrow.jpg"));
-        //openedTileButton.setIcon(new ImageIcon("img/MMPPPM.png"));
 
 
         closedTileButton.setBounds(55,5,50,50);
@@ -105,6 +101,8 @@ public class Draw extends JPanel implements ActionListener {
         depositButton.addActionListener(this);
         openedTileButton.addActionListener(this);
         closedTileButton.addActionListener(this);
+
+        updateSprites();
     }
     @Override
     public void actionPerformed(ActionEvent e) {
