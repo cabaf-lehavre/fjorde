@@ -44,7 +44,7 @@ public final class Textures {
 
             try {
                 BufferedImage img = ImageIO.read(child);
-                String name = stripExt(child.getName());
+                String name = FileUtils.stripExt(child.getName());
                 textures.put(name, img);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -71,17 +71,4 @@ public final class Textures {
         return load(getTilesBaseDir());
     }
 
-    private static String stripExt(String filename) {
-        int lo = filename.lastIndexOf('/');
-        if (lo < 0) {
-            lo = 0;
-        }
-
-        int hi = filename.lastIndexOf('.');
-        if (hi < lo) {
-            hi = filename.length() + 1;
-        }
-
-        return filename.substring(lo, hi);
-    }
 }
