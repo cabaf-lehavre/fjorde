@@ -11,6 +11,8 @@ public class Hexagone extends JFrame {
 
     Plateau panelPlateau;
     JPanel panelPioches;
+    JPanel panelDraw;
+    JPanel panelJailsPawn;
     JailsPawn jailsPawn;
     Draw draw;
 
@@ -28,18 +30,16 @@ public class Hexagone extends JFrame {
         panelPlateau.addMouseListener(localMouseManager);
 
         panelPioches = new JPanel(new GridLayout(2, 1));
-<<<<<<< HEAD
         panelJailsPawn = new JailsPawn();
         panelDraw = new Draw();
 
         panelPioches.add(panelDraw);
         panelPioches.add(panelJailsPawn);
-=======
         jailsPawn = new JailsPawn();
         draw = new Draw();
         panelPioches.add(draw);
         panelPioches.add(jailsPawn);
->>>>>>> f543caa973f2698a4b445d173f2d33348440b4d1
+
 
         add(panelPioches, BorderLayout.EAST);
         setVisible(true);

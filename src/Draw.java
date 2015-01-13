@@ -26,13 +26,13 @@ public class Draw extends JPanel implements ActionListener {
 
     public void closedDraw() {
         Tile tile = closed.draw();
-        closedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
+        closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", tile.getSymbol())));
         repaint();
     }
 
     public void closedDeposit(){
         opened.deposit(closed.draw());
-        closedTileButton.setIcon(new ImageIcon(String.format("img/$s.png", closed.getTile(0).getSymbol())));
+        closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/$s.png", closed.getTile(0).getSymbol())));
         System.out.println(opened);
         repaint();
     }
