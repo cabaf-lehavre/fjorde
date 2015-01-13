@@ -62,6 +62,7 @@ public class JailsPawn extends JPanel implements ActionListener{
         add(remainingPaws);
 
         jailButton.addActionListener(this);
+        pawnButton.addActionListener(this);
     }
 
     private void updateCounters() {
