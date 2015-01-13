@@ -25,6 +25,10 @@ public class Tile {
 		this.neighbours = neighbours;
 	}
 
+	public Tile(TileItem[] corners) {
+		this(corners, new Tile[CORNERS]);
+	}
+
 	/**
 	 * Get an item on the given index
 	 * @param i an integer ranged between 0 and {@link fjorde.Tile#CORNERS}

@@ -43,6 +43,14 @@ public final class TileItems {
                         n));
         }
     }
+    public static TileItem create(char c) {
+        switch (c) {
+            case 'M': return createMountain();
+            case 'S': return createSea();
+            case 'P': return createPlain();
+            default: throw new Error("UNEXPECTED TILE_ITEM "+c);
+        }
+    }
 
     /**
      * Randomly create an item
