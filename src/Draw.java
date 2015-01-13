@@ -34,7 +34,11 @@ public class Draw extends JPanel implements ActionListener {
         opened.deposit(closed.draw());
     }
 
-    public Tile previousOpened(){
+    public void previousOpened(){
+        if (opened.getSize() == 0) {
+            return;
+        }
+
         deckPos--;
         if (deckPos < 0) {
             deckPos = opened.getSize();
@@ -43,10 +47,13 @@ public class Draw extends JPanel implements ActionListener {
         Tile tile = opened.getTile(deckPos);
         openedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
         repaint();
-        return tile;
     }
 
-    public Tile nextOpened(){
+    public void nextOpened(){
+        if (opened.getSize() == 0) {
+            return;
+        }
+
         deckPos++;
         if (deckPos > opened.getSize()) {
             deckPos = 0;
@@ -55,7 +62,6 @@ public class Draw extends JPanel implements ActionListener {
         Tile tile = opened.getTile(deckPos);
         openedTileButton.setIcon(new ImageIcon(String.format("img/%s.png", tile.getSymbol())));
         repaint();
-        return tile;
     }
 
     public Draw(){
