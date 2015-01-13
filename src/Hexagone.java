@@ -15,8 +15,6 @@ public class Hexagone extends JFrame {
     Color[] tabCoul = {Color.RED, Color.WHITE, Color.BLACK, Color.GREEN, Color.YELLOW, Color.CYAN, Color.MAGENTA, Color.LIGHT_GRAY, Color.BLUE };
     Plateau panelPlateau;
     JPanel panelPioches;
-    JPanel panelClosedDraw;
-    JPanel panelOpenedDraw;
     JPanel panelJailsPawn;
     JPanel panelDraw;
     private java.util.List<Tile> tileList;
@@ -36,13 +34,9 @@ public class Hexagone extends JFrame {
         panelPlateau.addMouseListener(localMouseManager);
 
         panelPioches = new JPanel(new GridLayout(2, 1));
-        panelClosedDraw = new ClosedDraw();
-        panelOpenedDraw = new OpenedDraw();
         panelJailsPawn = new JailsPawn();
         panelDraw = new Draw();
         panelPioches.add(panelDraw);
-        //panelPioches.add(panelClosedDraw);
-        //panelPioches.add(panelOpenedDraw);
         panelPioches.add(panelJailsPawn);
 
         add(panelPioches, BorderLayout.EAST);
