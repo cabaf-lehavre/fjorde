@@ -13,6 +13,8 @@ public class Draw extends JPanel implements ActionListener {
     private Deck opened = new Deck(0);
     private Deck closed = new Deck(40);
 
+    private int selectedDeck;
+
     JButton previousTile;
     JButton nextTile;
     JButton openedTileButton;
@@ -114,11 +116,15 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         if ( e.getSource() == openedTileButton ) {
-
+            selectedDeck = 1;
+            openedTileButton.setBackground(Color.red);
+            closedTileButton.setBackground(Color.white);
         }
 
         if ( e.getSource() == closedTileButton ) {
-
+            selectedDeck = 2;
+            openedTileButton.setBackground(Color.white);
+            closedTileButton.setBackground(Color.red);
         }
 
         if ( e.getSource() == drawButton ) {
@@ -131,6 +137,18 @@ public class Draw extends JPanel implements ActionListener {
     }
 
     public Tile getSelectedTile() {
-
+        try {
+            if (selectedDeck == 1) {
+                return opened.draw();
+            } else if (selectedDeck == 2) {
+                return closed.draw();
+            } else {
+                throw new IllegalStateException("no deck selected");
+            }
+        } finally {
+            selectedDeck = 0;
+            openedTileButton.setBackground(Color.white);
+            closedTileButton.setBackground(Color.white);
+        }
     }
 }
