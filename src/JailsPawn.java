@@ -91,6 +91,7 @@ public class JailsPawn extends JPanel implements ActionListener{
             }
         } finally {
             clearSelection();
+            updateCounters();
         }
     }
 
