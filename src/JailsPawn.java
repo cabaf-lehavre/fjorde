@@ -1,5 +1,6 @@
 import fjorde.Bag;
 import fjorde.Player;
+import fjorde.PlayerItem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -76,6 +77,21 @@ public class JailsPawn extends JPanel implements ActionListener{
         buttonSelection = 0;
         jailButton.setBackground(Color.white);
         pawnButton.setBackground(Color.white);
+    }
+
+    public PlayerItem getSelectedItem() {
+        try {
+            switch (buttonSelection) {
+                case 1:
+                    return bag.getJail();
+                case 2:
+                    return bag.getPawn();
+                default:
+                    return null;
+            }
+        } finally {
+            clearSelection();
+        }
     }
 
 }
