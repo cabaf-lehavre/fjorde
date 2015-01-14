@@ -43,10 +43,16 @@ public class Deck {
     }
 
     public void shiftRight() {
+        if (remaining.isEmpty()) {
+            return;
+        }
         remaining.add(remaining.remove(0));
     }
 
     public void shiftLeft() {
+        if (remaining.isEmpty()) {
+            return;
+        }
         remaining.add(0, remaining.remove(remaining.size() - 1));
     }
 
