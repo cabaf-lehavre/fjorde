@@ -37,6 +37,7 @@ public class Plateau extends JPanel {
             for (int j = 0; j < 50; j++) {
                 if (tabP[i][j].contains(x, y)) {
                     System.out.println("Polygon " + i + ", " + j);
+                    //System.out.println(tile.canPutTile(tile));
                     if (tabT[i][j] == null) {
                         tabT[i][j] = tile;
                         repaint();
@@ -54,7 +55,6 @@ public class Plateau extends JPanel {
                 if (!p.contains(x, y)) {
                     continue;
                 }
-
                 Tile t = tabT[i][j];
                 if (t != null) {
                     t.setItem(item);

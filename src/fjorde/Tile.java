@@ -140,4 +140,60 @@ public class Tile {
 
 		return res.toString();
 	}
+    public int getNbNeighbour(){return 2/*neighbours.length*/;}
+    /**
+     * Check a neighbour to put this tile and return a boolean
+     * @param tileCurrent a non-null tile
+     */
+    public boolean canPutTile(Tile tileCurrent) {
+        int nbNbNeighbour = tileCurrent.getNbNeighbour();
+        System.out.print(nbNbNeighbour);
+        if (nbNbNeighbour==0){return true;}
+        if (nbNbNeighbour==1){return false;}
+
+        for (int cpt1=0;cpt1<=nbNbNeighbour;cpt1++) {
+            for (int cpt2=0;cpt2<=nbNbNeighbour;cpt2++) {
+                for (int cpt3=0;cpt3<=7;cpt3++) {
+                    switch (nbNbNeighbour) {
+                        case 2:
+                            if (tileCurrent.getCorner(cpt1) == tileCurrent.getNeighbour(cpt2).getCorner(cpt3) &&
+                                    tileCurrent.getCorner((cpt1 + 1) % 7) == tileCurrent.getNeighbour((cpt2 + 1) % 7).getCorner((cpt3 + 1) % 7)){
+                                return true;
+                            }
+                        case 3:
+                            if (tileCurrent.getCorner(cpt1) == tileCurrent.getNeighbour(cpt2).getCorner(cpt3) &&
+                                    tileCurrent.getCorner((cpt1 + 1) % 7) == tileCurrent.getNeighbour((cpt2 + 1) % 7).getCorner((cpt3 + 1) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 2) % 7) == tileCurrent.getNeighbour((cpt2 + 2) % 7).getCorner((cpt3 + 3) % 7)){
+                                return true;
+                            }
+                        case 4:
+                            if (tileCurrent.getCorner(cpt1) == tileCurrent.getNeighbour(cpt2).getCorner(cpt3) &&
+                                    tileCurrent.getCorner((cpt1 + 1) % 7) == tileCurrent.getNeighbour((cpt2 + 1) % 7).getCorner((cpt3 + 1) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 2) % 7) == tileCurrent.getNeighbour((cpt2 + 2) % 7).getCorner((cpt3 + 2) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 3) % 7) == tileCurrent.getNeighbour((cpt2 + 3) % 7).getCorner((cpt3 + 3) % 7)){
+                                return true;
+                            }
+                        case 5:
+                            if (tileCurrent.getCorner(cpt1) == tileCurrent.getNeighbour(cpt2).getCorner(cpt3) &&
+                                    tileCurrent.getCorner((cpt1 + 1) % 7) == tileCurrent.getNeighbour((cpt2 + 1) % 7).getCorner((cpt3 + 1) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 2) % 7) == tileCurrent.getNeighbour((cpt2 + 2) % 7).getCorner((cpt3 + 2) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 3) % 7) == tileCurrent.getNeighbour((cpt2 + 3) % 7).getCorner((cpt3 + 3) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 4) % 7) == tileCurrent.getNeighbour((cpt2 + 4) % 7).getCorner((cpt3 + 4) % 7)){
+                                return true;
+                            }
+                        case 6:
+                            if (tileCurrent.getCorner(cpt1) == tileCurrent.getNeighbour(cpt2).getCorner(cpt3) &&
+                                    tileCurrent.getCorner((cpt1 + 1) % 7) == tileCurrent.getNeighbour((cpt2 + 1) % 7).getCorner((cpt3 + 1) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 2) % 7) == tileCurrent.getNeighbour((cpt2 + 2) % 7).getCorner((cpt3 + 2) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 3) % 7) == tileCurrent.getNeighbour((cpt2 + 3) % 7).getCorner((cpt3 + 3) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 4) % 7) == tileCurrent.getNeighbour((cpt2 + 4) % 7).getCorner((cpt3 + 4) % 7)&&
+                                    tileCurrent.getCorner((cpt1 + 5) % 7) == tileCurrent.getNeighbour((cpt2 + 5) % 7).getCorner((cpt3 + 5) % 7)){
+                                return true;
+                            }
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
