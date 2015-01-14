@@ -8,12 +8,12 @@ import java.util.Map;
 
 public class Plateau extends JPanel {
 
-    private Tile[][] tabT;
+    private TileSet tiles;
     private Polygon[][] tabP;
     private Map<String, Image> textures = Textures.loadTiles();
 
     public Plateau() {
-        tabT = new Tile[50][50];
+        tiles = new TileSet(50, 50);
         tabP = new Polygon[50][50];
 
         // Create background polygons
@@ -31,15 +31,15 @@ public class Plateau extends JPanel {
         }
 
         // Basics tiles presents at start of the game
-        tabT[9][10] = Tiles.of(TileItems.PLAIN, TileItems.SEA,
+        tiles.set(9, 10, Tiles.of(TileItems.PLAIN, TileItems.SEA,
                               TileItems.PLAIN, TileItems.PLAIN,
-                              TileItems.MOUNTAIN, TileItems.MOUNTAIN);
-        tabT[10][11] = Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
+                              TileItems.MOUNTAIN, TileItems.MOUNTAIN));
+        tiles.set(10, 11, Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
                 TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN);
-        tabT[10][10] = Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN));
+        tiles.set(10, 10, Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
                 TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN);
+                TileItems.PLAIN, TileItems.PLAIN));
     }
 
     /**
@@ -51,14 +51,15 @@ public class Plateau extends JPanel {
     public void clic(int x, int y, Tile tile) {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
-                if (tabP[i][j].contains(x, y)) {
-                    System.out.println("Polygon " + i + ", " + j);
-                    if (tabT[i][j] == null) {
-                        tabT[i][j] = tile;
-                        repaint();
-                    }
-                    break;
+                Polygon p = tabP[i][j];
+                if (!p.contains(x, y)) {
+                    continue;
                 }
+
+                if (tiles.trySet(i, j, tile)) {
+                    repaint();
+                }
+                break;
             }
         }
     }
@@ -77,7 +78,7 @@ public class Plateau extends JPanel {
                     continue;
                 }
 
-                Tile t = tabT[i][j];
+                Tile t = tiles.tryGet(i, j);
                 if (t != null) {
                     t.setItem(item);
                     repaint();
@@ -97,7 +98,7 @@ public class Plateau extends JPanel {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
                 Polygon p = tabP[i][j];
-                Tile t = tabT[i][j];
+                Tile t = tiles.tryGet(i, j);
                 g.drawPolygon(p);
 
                 if (t != null) {

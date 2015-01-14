@@ -1,14 +1,15 @@
 import fjorde.Deck;
 import fjorde.Tile;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * @author Alexandre BAPTISTE
  */
-public class Draw extends JPanel implements ActionListener {
+public class Draw extends JPanel implements MouseListener {
 
     private Deck opened = new Deck(0);
     private Deck closed = new Deck(40);
@@ -114,12 +115,12 @@ public class Draw extends JPanel implements ActionListener {
         add(previousTile);
         add(nextTile);
 
-        previousTile.addActionListener(this);
-        nextTile.addActionListener(this);
-        drawButton.addActionListener(this);
-        depositButton.addActionListener(this);
-        openedTileButton.addActionListener(this);
-        closedTileButton.addActionListener(this);
+        previousTile.addMouseListener(this);
+        nextTile.addMouseListener(this);
+        drawButton.addMouseListener(this);
+        depositButton.addMouseListener(this);
+        openedTileButton.addMouseListener(this);
+        closedTileButton.addMouseListener(this);
 
         updateSprites();
     }
@@ -129,7 +130,7 @@ public class Draw extends JPanel implements ActionListener {
      * @param e, the event
      */
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
 
         if ( e.getSource() == nextTile ) {
             nextOpened();
@@ -140,7 +141,16 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         if ( e.getSource() == openedTileButton ) {
-            if (selectedDeck != 1) {
+            if (SwingUtilities.isRightMouseButton(e)) {
+                try {
+                    opened.peek().rotate();
+                    updateSprites();
+                } catch (Exception ex) {
+                    JOptionPane.showConfirmDialog(this, String.format(
+                        "alexandre c un pd %s",
+                            opened.peek().getSymbol()));
+                }
+            } else if (selectedDeck != 1) {
                 selectedDeck = 1;
                 openedTileButton.setBackground(Color.red);
                 closedTileButton.setBackground(Color.white);
@@ -150,7 +160,16 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         if ( e.getSource() == closedTileButton ) {
-            if (selectedDeck != 2) {
+            if (SwingUtilities.isRightMouseButton(e)) {
+                try {
+                    closed.peek().rotate();
+                    updateSprites();
+                } catch (Exception ex) {
+                    JOptionPane.showConfirmDialog(this, String.format(
+                        "alexandre c un pd %s",
+                            closed.peek().getSymbol()));
+                }
+            } else if (selectedDeck != 2) {
                 selectedDeck = 2;
                 openedTileButton.setBackground(Color.white);
                 closedTileButton.setBackground(Color.red);
@@ -166,6 +185,26 @@ public class Draw extends JPanel implements ActionListener {
         if ( e.getSource() == depositButton ) {
             closedDeposit();
         }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
     }
 
     /**
@@ -185,6 +224,11 @@ public class Draw extends JPanel implements ActionListener {
             clearDeckSelection();
             updateSprites();
         }
+    }
+
+    public void putTile(Tile tile) {
+        opened.deposit(tile);
+        updateSprites();
     }
 
     /**

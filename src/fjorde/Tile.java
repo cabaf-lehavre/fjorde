@@ -132,12 +132,22 @@ public class Tile {
 	}
 
 	public String getSymbol() {
-		StringBuilder res = new StringBuilder();
+		return Tiles.newSymbol(this.corners);
+	}
 
-		for (TileItem corner : corners) {
-			res.append(corner.getSymbol());
+	public void rotate(int steps) {
+		TileItem[] newCorners = new TileItem[this.corners.length];
+		System.arraycopy(this.corners, this.corners.length - steps, newCorners, 0, steps);
+		System.arraycopy(this.corners, 0, newCorners, steps, this.corners.length - steps);
+
+		if (!Tiles.isValidCorners(newCorners)) {
+			throw new IllegalStateException();
 		}
 
-		return res.toString();
+		this.corners = newCorners;
+	}
+
+	public void rotate() {
+		rotate(1);
 	}
 }

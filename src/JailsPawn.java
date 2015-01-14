@@ -17,7 +17,7 @@ public class JailsPawn extends JPanel implements ActionListener{
     JButton pawnButton;
     JLabel remainingJails;
     JLabel remainingPaws;
-    Player player = new Player(1,"Stephen","Noir");
+    Player player;
     Bag bag = new Bag(player,4,20);
     int buttonSelection;
 
@@ -48,7 +48,8 @@ public class JailsPawn extends JPanel implements ActionListener{
      * the only one UI parts which has a GridLayout,
      * still adding buttons and stuff
      */
-    public JailsPawn() {
+    public JailsPawn(Player player) {
+        this.player = player;
 
         setLayout(new GridLayout(2,1));
 
@@ -72,8 +73,6 @@ public class JailsPawn extends JPanel implements ActionListener{
 
         jailButton.addActionListener(this);
         pawnButton.addActionListener(this);
-
-
     }
 
     /**
@@ -114,6 +113,11 @@ public class JailsPawn extends JPanel implements ActionListener{
             clearSelection();
             updateCounters();
         }
+    }
+
+    public void putItem(PlayerItem item) {
+        bag.put(item);
+        updateCounters();
     }
 
 }

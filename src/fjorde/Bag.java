@@ -3,15 +3,11 @@ package fjorde;
 import fjorde.items.Jail;
 import fjorde.items.Pawn;
 
-import java.util.List;
-
 /**
  * @author Alexandre BAPTISTE
  * @author Antoine CHAUVIN
  */
 public class Bag {
-
-    private List<PlayerItem> remaining;
     private final Player player;
     private int remainingJails;
     private int remainingPawns;
@@ -59,11 +55,11 @@ public class Bag {
         return new Jail(player);
     }
 
-    /**
-     * just size getter
-     * @return int representing actual size
-     */
-    public int getSize(){
-        return remaining.size();
+    public void put(PlayerItem item) {
+        if (item instanceof Pawn) {
+            remainingPawns++;
+        } else if (item instanceof Jail) {
+            remainingJails++;
+        }
     }
 }
