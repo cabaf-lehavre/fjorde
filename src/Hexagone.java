@@ -2,6 +2,7 @@
  * @author Alexandre BAPTISTE
  */
 
+import fjorde.Player;
 import fjorde.PlayerItem;
 import fjorde.Tile;
 
@@ -14,10 +15,11 @@ public class Hexagone extends JFrame {
 
     Plateau panelPlateau;
     JPanel panelPioches;
-    JPanel panelDraw;
-    JPanel panelJailsPawn;
     JailsPawn jailsPawn;
     Draw draw;
+    ScoreBoard scoreBoard;
+    Player player = new Player(1,"Stephen","Noir");
+    Player player2 = new Player(1,"Dark vador","Noir");
 
     /**
      * Main UI, adding all panel, managers ...
@@ -35,11 +37,13 @@ public class Hexagone extends JFrame {
         add(panelPlateau);
         panelPlateau.addMouseListener(localMouseManager);
 
-        panelPioches = new JPanel(new GridLayout(2, 1));
+        panelPioches = new JPanel(new GridLayout(3, 1));
         jailsPawn = new JailsPawn();
         draw = new Draw();
+        scoreBoard = new ScoreBoard(player,player2);
         panelPioches.add(draw);
         panelPioches.add(jailsPawn);
+        panelPioches.add(scoreBoard);
 
 
         add(panelPioches, BorderLayout.EAST);

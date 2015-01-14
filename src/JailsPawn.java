@@ -69,6 +69,7 @@ public class JailsPawn extends JPanel implements ActionListener{
         add(pawnButton);
         add(remainingPaws);
 
+
         jailButton.addActionListener(this);
         pawnButton.addActionListener(this);
 
@@ -79,8 +80,14 @@ public class JailsPawn extends JPanel implements ActionListener{
      * just the number of remaining jail/paws
      */
     private void updateCounters() {
-        remainingJails.setText("       x    " + bag.getRemainingJails());
-        remainingPaws.setText("        x   " + bag.getRemainingPawns());
+        if( bag.getRemainingJails() >= 0){
+            remainingJails.setText("       x    " + bag.getRemainingJails());
+        }
+
+        if (bag.getRemainingPawns() >= 0) {
+            remainingPaws.setText("        x   " + bag.getRemainingPawns());
+        }
+
     }
 
     private void clearSelection() {
