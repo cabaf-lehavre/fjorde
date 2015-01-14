@@ -10,12 +10,12 @@ import java.util.Map;
 
 public class Plateau extends JPanel {
 
-    private Tile[][] tabT;
+    private TileSet tiles;
     private Polygon[][] tabP;
     private Map<String, Image> textures = Textures.loadTiles();
 
     public Plateau() {
-        tabT = new Tile[50][50];
+        tiles = new TileSet(50, 50);
         tabP = new Polygon[50][50];
 
 		/* Creation des Polygons, qui servent d'emplacement pour les pieces du jeu*/
@@ -40,8 +40,7 @@ public class Plateau extends JPanel {
                     continue;
                 }
 
-                if (tabT[i][j] == null) {
-                    tabT[i][j] = tile;
+                if (tiles.trySet(x, y, tile)) {
                     repaint();
                 }
                 break;
@@ -57,7 +56,7 @@ public class Plateau extends JPanel {
                     continue;
                 }
 
-                Tile t = tabT[i][j];
+                Tile t = tiles.tryGet(x, y);
                 if (t != null) {
                     t.setItem(item);
                     repaint();
@@ -73,7 +72,7 @@ public class Plateau extends JPanel {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
                 Polygon p = tabP[i][j];
-                Tile t = tabT[i][j];
+                Tile t = tiles.tryGet(i, j);
                 g.drawPolygon(p);
 
                 if (t != null) {
