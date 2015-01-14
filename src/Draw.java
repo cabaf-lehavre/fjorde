@@ -1,5 +1,6 @@
 import fjorde.Deck;
 import fjorde.Tile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -157,6 +158,11 @@ public class Draw extends JPanel implements ActionListener {
             clearDeckSelection();
             updateSprites();
         }
+    }
+
+    public void putTile(Tile tile) {
+        opened.deposit(tile);
+        updateSprites();
     }
 
     public void clearDeckSelection() {
