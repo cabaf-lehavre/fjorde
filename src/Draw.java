@@ -23,16 +23,26 @@ public class Draw extends JPanel implements ActionListener {
     JButton depositButton;
     JButton closedTileButton;
 
+    /**
+     * draw a tile in the Closed Draw
+     */
     public void closedDraw() {
         closed.draw(); // draw and forget
         updateSprites();
     }
 
+    /**
+     * depose the top tile of Closed in Opened
+     */
     public void closedDeposit(){
         opened.deposit(closed.draw()); // draw and put in open deck
         updateSprites();
     }
 
+    /**
+     * Updating ( repaint ) ALL icon method,
+     * preferable to do repaint in each method and call it to each others
+     */
     public void updateSprites() {
         Tile cls = closed.peek();
         if (cls != null) {
@@ -51,16 +61,25 @@ public class Draw extends JPanel implements ActionListener {
         repaint();
     }
 
+    /**
+     * Iterate Opened deck using {@link fjorde.Deck#shiftLeft()}
+     */
     public void previousOpened(){
         opened.shiftLeft();
         updateSprites();
     }
 
+    /**
+     * Iterate Opened deck using {@link fjorde.Deck#shiftRight()}
+     */
     public void nextOpened(){
         opened.shiftRight();
         updateSprites();
     }
 
+    /**
+     * Just constructor with all UI stuff
+     */
     public Draw(){
         setLayout(null);
 
@@ -104,6 +123,11 @@ public class Draw extends JPanel implements ActionListener {
 
         updateSprites();
     }
+
+    /**
+     * redefine actionPerformed for each button
+     * @param e, the event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -144,6 +168,10 @@ public class Draw extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * method use to know which tile is selected and used
+     * @return the selected one
+     */
     public Tile getSelectedTile() {
         try {
             if (selectedDeck == 1) {
@@ -159,6 +187,11 @@ public class Draw extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * If player finally doesn't want to use this tile,
+     * he can re-put it again in the deck,
+     * it's like a "cancel" action
+     */
     public void clearDeckSelection() {
         selectedDeck = 0;
         openedTileButton.setBackground(Color.white);
