@@ -10,6 +10,9 @@ import java.util.Map;
 
 public class Plateau extends JPanel {
 
+    // TODO configure me
+    public static final boolean DEBUG = true;
+
     private TileSet tiles;
     private Polygon[][] tabP;
     private Map<String, Image> textures = Textures.loadTiles();
@@ -99,22 +102,27 @@ public class Plateau extends JPanel {
 
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
-                Polygon p = tabP[i][j];
-                Tile t = tiles.tryGet(i, j);
+                Polygon p   = tabP[i][j];
+                Tile t      = tiles.tryGet(i, j);
+                Rectangle b = p.getBounds();
+
                 g.drawPolygon(p);
+
+                if (DEBUG) {
+                    g.setColor(Color.red);
+                    g.drawString(i + "," + j, (int) b.getX() + 5, (int) b.getY() + 25);
+                    g.setColor(Color.black);
+                }
 
                 if (t != null) {
                     Image texture = textures.get(t.getSymbol());
-
-                    Rectangle bounds = p.getBounds();
-
-                    g.drawImage(texture, (int) bounds.getX(), (int) bounds.getY(), null);
+                    g.drawImage(texture, (int) b.getX(), (int) b.getY(), null);
 
                     PlayerItem item = t.getItem();
                     if (item instanceof Jail) {
-                        drawJailInMiddleOf(g, bounds);
+                        drawJailInMiddleOf(g, b);
                     } else if (item instanceof Pawn) {
-                        drawPawnInMiddleOf(g, bounds);
+                        drawPawnInMiddleOf(g, b);
                     }
                 }
             }
