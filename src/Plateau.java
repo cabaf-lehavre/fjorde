@@ -31,15 +31,15 @@ public class Plateau extends JPanel {
         }
 
         // Basics tiles presents at start of the game
-        tabT[9][10] = Tiles.of(TileItems.PLAIN, TileItems.SEA,
+        tiles.set(9, 10, Tiles.of(TileItems.PLAIN, TileItems.SEA,
                               TileItems.PLAIN, TileItems.PLAIN,
-                              TileItems.MOUNTAIN, TileItems.MOUNTAIN);
-        tabT[10][11] = Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
+                              TileItems.MOUNTAIN, TileItems.MOUNTAIN));
+        tiles.set(10, 11, Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
                 TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN);
-        tabT[10][10] = Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN));
+        tiles.set(10, 10, Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
                 TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN);
+                TileItems.PLAIN, TileItems.PLAIN));
     }
 
     /**
@@ -56,7 +56,7 @@ public class Plateau extends JPanel {
                     continue;
                 }
 
-                if (tiles.trySet(x, y, tile)) {
+                if (tiles.trySet(i, j, tile)) {
                     repaint();
                 }
                 break;

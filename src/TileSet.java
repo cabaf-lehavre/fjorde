@@ -18,6 +18,11 @@ public class TileSet {
         return tiles[0].length;
     }
 
+    private boolean inBounds(int x, int y) {
+        return x >= 0 && x < getWidth()
+            && y >= 0 && y < getHeight();
+    }
+
     public Tile tryGet(int x, int y) {
         return tiles[x][y];
     }
@@ -31,7 +36,7 @@ public class TileSet {
     }
 
     public boolean present(int x, int y) {
-        return tryGet(x, y) != null;
+        return inBounds(x, y) && tryGet(x, y) != null;
     }
 
     public void set(int x, int y, Tile tile) {
