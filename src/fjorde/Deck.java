@@ -27,10 +27,6 @@ public class Deck {
         return remaining.remove(0);
     }
 
-    public Tile drawAt(int i) {
-        return remaining.remove(i);
-    }
-
     public Tile peek() {
         if (remaining.isEmpty()) {
             return null;
