@@ -17,7 +17,7 @@ public class JailsPawn extends JPanel implements ActionListener{
     JButton pawnButton;
     JLabel remainingJails;
     JLabel remainingPaws;
-    Player player = new Player(1,"Stephen","Noir");
+    Player player;
     Bag bag = new Bag(player,4,20);
     int buttonSelection;
 
@@ -44,7 +44,9 @@ public class JailsPawn extends JPanel implements ActionListener{
         }
     }
 
-    public JailsPawn() {
+    public JailsPawn(Player player) {
+        this.player = player;
+
         setLayout(new GridLayout(2,1));
 
         jailButton = new JButton();

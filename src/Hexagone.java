@@ -2,6 +2,7 @@
  * @author Alexandre BAPTISTE
  */
 
+import fjorde.Player;
 import fjorde.PlayerItem;
 import fjorde.Tile;
 
@@ -33,7 +34,7 @@ public class Hexagone extends JFrame {
         panelPlateau.addMouseListener(localMouseManager);
 
         panelPioches = new JPanel(new GridLayout(2, 1));
-        jailsPawn = new JailsPawn();
+        jailsPawn = new JailsPawn(new Player(1, "Stephen", "Noir"));
         draw = new Draw();
         panelPioches.add(draw);
         panelPioches.add(jailsPawn);
