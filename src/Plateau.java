@@ -74,11 +74,11 @@ public class Plateau extends JPanel {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
                 Polygon p = tabP[i][j];
-                if (!p.contains(x, y)) {
+                if (!p.contains(i, j)) {
                     continue;
                 }
 
-                Tile t = tiles.tryGet(x, y);
+                Tile t = tiles.tryGet(i, j);
                 if (t != null) {
                     t.setItem(item);
                     repaint();
