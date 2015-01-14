@@ -12,6 +12,12 @@ public class Bag {
     private int remainingJails;
     private int remainingPawns;
 
+    /**
+     *
+     * @param player, bag's owner
+     * @param remainingJails current number of jails
+     * @param remainingPawns current number of pawns
+     */
     public Bag( Player player, int remainingJails, int remainingPawns ){
         this.player = player;
         this.remainingJails = remainingJails;
@@ -31,11 +37,19 @@ public class Bag {
         return player;
     }
 
+    /**
+     * "drawing" the pawn, decrease current
+     * @return the player Pawn
+     */
     public Pawn getPawn() {
         remainingPawns --;
         return new Pawn(player);
     }
 
+    /**
+     * "drawing" the jail, decrease current
+     * @return the player jail
+     */
     public Jail getJail() {
         remainingJails --;
         return new Jail(player);

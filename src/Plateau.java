@@ -1,6 +1,4 @@
-import fjorde.PlayerItem;
-import fjorde.Textures;
-import fjorde.Tile;
+import fjorde.*;
 import fjorde.items.Jail;
 import fjorde.items.Pawn;
 
@@ -18,20 +16,38 @@ public class Plateau extends JPanel {
         tiles = new TileSet(50, 50);
         tabP = new Polygon[50][50];
 
-		/* Creation des Polygons, qui servent d'emplacement pour les pieces du jeu*/
+        // Create background polygons
         for (int i = 0; i < 50; i++) {
-            int vY = i * 30; /* Vecteur de deplacement ordonnees */
+            int vY = i * 30;
             for (int j = 0; j < 50; j++) {
-                int vX = j * 40; /* Vecteur deplacement abscices */
+                int vX = j * 40;
                 if (i % 2 != 0)
-                    vX += 20; /* Vecteur deplacement abscices suplementaire pour lignes impaires */
+                    vX += 20; // impair X ( +20 to decay the polygon )
                 int x1[] = {20 + vX, 40 + vX, 40 + vX, 20 + vX, 0 + vX, 0 + vX};
                 int y1[] = {0 + vY, 10 + vY, 30 + vY, 40 + vY, 30 + vY, 10 + vY};
                 tabP[i][j] = new Polygon(x1, y1, 6);
+
             }
         }
+
+        // Basics tiles presents at start of the game
+        tabT[9][10] = Tiles.of(TileItems.PLAIN, TileItems.SEA,
+                              TileItems.PLAIN, TileItems.PLAIN,
+                              TileItems.MOUNTAIN, TileItems.MOUNTAIN);
+        tabT[10][11] = Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN);
+        tabT[10][10] = Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN);
     }
 
+    /**
+     *
+     * @param x Polygon absciss
+     * @param y Polygon ordinate
+     * @param tile Desired tile
+     */
     public void clic(int x, int y, Tile tile) {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
@@ -48,6 +64,12 @@ public class Plateau extends JPanel {
         }
     }
 
+    /**
+     *
+     * @param x Polygon absciss
+     * @param y Polygon ordinate
+     * @param item Selected item
+     */
     public void clic(int x, int y, PlayerItem item) {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
@@ -66,6 +88,10 @@ public class Plateau extends JPanel {
         }
     }
 
+    /**
+     * Main method, which allows to "add" image to background
+     * @param g
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -77,6 +103,7 @@ public class Plateau extends JPanel {
 
                 if (t != null) {
                     Image texture = textures.get(t.getSymbol());
+
                     Rectangle bounds = p.getBounds();
 
                     g.drawImage(texture, (int) bounds.getX(), (int) bounds.getY(), null);

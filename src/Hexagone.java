@@ -17,6 +17,9 @@ public class Hexagone extends JFrame {
     JailsPawn jailsPawn;
     Draw draw;
 
+    /**
+     * Main UI, adding all panel, managers ...
+     */
     public Hexagone() {
         panelPlateau = new Plateau();
         panelPlateau.setBackground(Color.white);
@@ -44,10 +47,14 @@ public class Hexagone extends JFrame {
     {
         private MouseManager() {}
 
+        /**
+         * mouse has some button, define which button action
+         * @param paramMouseEvent
+         */
         public void mousePressed(MouseEvent paramMouseEvent)
         {
             int x = paramMouseEvent.getX(),
-                y = paramMouseEvent.getY();
+                    y = paramMouseEvent.getY();
 
             if ( paramMouseEvent.getButton() == 1) {
                 Tile selectedTile = draw.getSelectedTile();

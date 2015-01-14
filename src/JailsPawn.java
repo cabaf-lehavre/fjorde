@@ -44,6 +44,10 @@ public class JailsPawn extends JPanel implements ActionListener{
         }
     }
 
+    /**
+     * the only one UI parts which has a GridLayout,
+     * still adding buttons and stuff
+     */
     public JailsPawn(Player player) {
         this.player = player;
 
@@ -70,6 +74,9 @@ public class JailsPawn extends JPanel implements ActionListener{
         pawnButton.addActionListener(this);
     }
 
+    /**
+     * just the number of remaining jail/paws
+     */
     private void updateCounters() {
         remainingJails.setText("       x    " + bag.getRemainingJails());
         remainingPaws.setText("        x   " + bag.getRemainingPawns());
@@ -81,6 +88,10 @@ public class JailsPawn extends JPanel implements ActionListener{
         pawnButton.setBackground(Color.white);
     }
 
+    /**
+     * just to know which one of jail/pawn has been selected
+     * @return jail/pawn
+     */
     public PlayerItem getSelectedItem() {
         try {
             switch (buttonSelection) {
