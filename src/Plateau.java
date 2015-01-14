@@ -35,14 +35,16 @@ public class Plateau extends JPanel {
     public void clic(int x, int y, Tile tile) {
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
-                if (tabP[i][j].contains(x, y)) {
-                    System.out.println("Polygon " + i + ", " + j);
-                    if (tabT[i][j] == null) {
-                        tabT[i][j] = tile;
-                        repaint();
-                    }
-                    break;
+                Polygon p = tabP[i][j];
+                if (!p.contains(x, y)) {
+                    continue;
                 }
+
+                if (tabT[i][j] == null) {
+                    tabT[i][j] = tile;
+                    repaint();
+                }
+                break;
             }
         }
     }
