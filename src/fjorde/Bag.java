@@ -47,6 +47,14 @@ public class Bag {
         return new Jail(player);
     }
 
+    public void put(PlayerItem item) {
+        if (item instanceof Pawn) {
+            remainingPawns++;
+        } else if (item instanceof Jail) {
+            remainingJails++;
+        }
+    }
+
     public int getSize(){
         return remaining.size();
     }

@@ -95,4 +95,9 @@ public class JailsPawn extends JPanel implements ActionListener{
         }
     }
 
+    public void putItem(PlayerItem item) {
+        bag.put(item);
+        updateCounters();
+    }
+
 }
