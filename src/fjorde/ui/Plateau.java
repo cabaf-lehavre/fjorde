@@ -1,3 +1,5 @@
+package fjorde.ui;
+
 import fjorde.*;
 import fjorde.items.Jail;
 import fjorde.items.Pawn;

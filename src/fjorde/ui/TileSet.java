@@ -1,3 +1,5 @@
+package fjorde.ui;
+
 import fjorde.Tile;
 
 /**
