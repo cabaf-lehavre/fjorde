@@ -17,7 +17,7 @@ public class JailsPawn extends JPanel implements ActionListener{
     JButton pawnButton;
     JLabel remainingJails;
     JLabel remainingPaws;
-    Player player = new Player(1,"Stephen","Noir");
+    Player player;
     Bag bag = new Bag(player,4,20);
     int buttonSelection;
 
@@ -44,7 +44,13 @@ public class JailsPawn extends JPanel implements ActionListener{
         }
     }
 
-    public JailsPawn() {
+    /**
+     * the only one UI parts which has a GridLayout,
+     * still adding buttons and stuff
+     */
+    public JailsPawn(Player player) {
+        this.player = player;
+
         setLayout(new GridLayout(2,1));
 
         jailButton = new JButton();
@@ -64,13 +70,23 @@ public class JailsPawn extends JPanel implements ActionListener{
         add(pawnButton);
         add(remainingPaws);
 
+
         jailButton.addActionListener(this);
         pawnButton.addActionListener(this);
     }
 
+    /**
+     * just the number of remaining jail/paws
+     */
     private void updateCounters() {
-        remainingJails.setText("       x    " + bag.getRemainingJails());
-        remainingPaws.setText("        x   " + bag.getRemainingPawns());
+        if( bag.getRemainingJails() >= 0){
+            remainingJails.setText("       x    " + bag.getRemainingJails());
+        }
+
+        if (bag.getRemainingPawns() >= 0) {
+            remainingPaws.setText("        x   " + bag.getRemainingPawns());
+        }
+
     }
 
     private void clearSelection() {
@@ -79,6 +95,10 @@ public class JailsPawn extends JPanel implements ActionListener{
         pawnButton.setBackground(Color.white);
     }
 
+    /**
+     * just to know which one of jail/pawn has been selected
+     * @return jail/pawn
+     */
     public PlayerItem getSelectedItem() {
         try {
             switch (buttonSelection) {
@@ -93,6 +113,11 @@ public class JailsPawn extends JPanel implements ActionListener{
             clearSelection();
             updateCounters();
         }
+    }
+
+    public void putItem(PlayerItem item) {
+        bag.put(item);
+        updateCounters();
     }
 
 }

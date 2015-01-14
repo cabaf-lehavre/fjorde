@@ -1,14 +1,15 @@
 import fjorde.Deck;
 import fjorde.Tile;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * @author Alexandre BAPTISTE
  */
-public class Draw extends JPanel implements ActionListener {
+public class Draw extends JPanel implements MouseListener {
 
     private Deck opened = new Deck(0);
     private Deck closed = new Deck(40);
@@ -23,16 +24,26 @@ public class Draw extends JPanel implements ActionListener {
     JButton depositButton;
     JButton closedTileButton;
 
+    /**
+     * draw a tile in the Closed Draw
+     */
     public void closedDraw() {
         closed.draw(); // draw and forget
         updateSprites();
     }
 
+    /**
+     * depose the top tile of Closed in Opened
+     */
     public void closedDeposit(){
         opened.deposit(closed.draw()); // draw and put in open deck
         updateSprites();
     }
 
+    /**
+     * Updating ( repaint ) ALL icon method,
+     * preferable to do repaint in each method and call it to each others
+     */
     public void updateSprites() {
         Tile cls = closed.peek();
         if (cls != null) {
@@ -51,16 +62,25 @@ public class Draw extends JPanel implements ActionListener {
         repaint();
     }
 
+    /**
+     * Iterate Opened deck using {@link fjorde.Deck#shiftLeft()}
+     */
     public void previousOpened(){
         opened.shiftLeft();
         updateSprites();
     }
 
+    /**
+     * Iterate Opened deck using {@link fjorde.Deck#shiftRight()}
+     */
     public void nextOpened(){
         opened.shiftRight();
         updateSprites();
     }
 
+    /**
+     * Just constructor with all UI stuff
+     */
     public Draw(){
         setLayout(null);
 
@@ -95,17 +115,22 @@ public class Draw extends JPanel implements ActionListener {
         add(previousTile);
         add(nextTile);
 
-        previousTile.addActionListener(this);
-        nextTile.addActionListener(this);
-        drawButton.addActionListener(this);
-        depositButton.addActionListener(this);
-        openedTileButton.addActionListener(this);
-        closedTileButton.addActionListener(this);
+        previousTile.addMouseListener(this);
+        nextTile.addMouseListener(this);
+        drawButton.addMouseListener(this);
+        depositButton.addMouseListener(this);
+        openedTileButton.addMouseListener(this);
+        closedTileButton.addMouseListener(this);
 
         updateSprites();
     }
+
+    /**
+     * redefine actionPerformed for each button
+     * @param e, the event
+     */
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
 
         if ( e.getSource() == nextTile ) {
             nextOpened();
@@ -116,7 +141,16 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         if ( e.getSource() == openedTileButton ) {
-            if (selectedDeck != 1) {
+            if (SwingUtilities.isRightMouseButton(e)) {
+                try {
+                    opened.peek().rotate();
+                    updateSprites();
+                } catch (Exception ex) {
+                    JOptionPane.showConfirmDialog(this, String.format(
+                        "alexandre c un pd %s",
+                            opened.peek().getSymbol()));
+                }
+            } else if (selectedDeck != 1) {
                 selectedDeck = 1;
                 openedTileButton.setBackground(Color.red);
                 closedTileButton.setBackground(Color.white);
@@ -126,7 +160,16 @@ public class Draw extends JPanel implements ActionListener {
         }
 
         if ( e.getSource() == closedTileButton ) {
-            if (selectedDeck != 2) {
+            if (SwingUtilities.isRightMouseButton(e)) {
+                try {
+                    closed.peek().rotate();
+                    updateSprites();
+                } catch (Exception ex) {
+                    JOptionPane.showConfirmDialog(this, String.format(
+                        "alexandre c un pd %s",
+                            closed.peek().getSymbol()));
+                }
+            } else if (selectedDeck != 2) {
                 selectedDeck = 2;
                 openedTileButton.setBackground(Color.white);
                 closedTileButton.setBackground(Color.red);
@@ -144,6 +187,30 @@ public class Draw extends JPanel implements ActionListener {
         }
     }
 
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
+    /**
+     * method use to know which tile is selected and used
+     * @return the selected one
+     */
     public Tile getSelectedTile() {
         try {
             if (selectedDeck == 1) {
@@ -159,6 +226,16 @@ public class Draw extends JPanel implements ActionListener {
         }
     }
 
+    public void putTile(Tile tile) {
+        opened.deposit(tile);
+        updateSprites();
+    }
+
+    /**
+     * If player finally doesn't want to use this tile,
+     * he can re-put it again in the deck,
+     * it's like a "cancel" action
+     */
     public void clearDeckSelection() {
         selectedDeck = 0;
         openedTileButton.setBackground(Color.white);

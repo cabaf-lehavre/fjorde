@@ -56,6 +56,34 @@ public final class Tiles {
     }
 
     /**
+     * Determine whether or not a symbol is valid
+     * @param symbol a non-null string representing the symbol
+     * @return a boolean
+     */
+    public static boolean isValidSymbol(String symbol) {
+        return SYMBOLS.contains(symbol);
+    }
+
+    /**
+     * Build a new symbol given an array of {@link fjorde.TileItem}
+     * @param corners a non-null array
+     * @return a non-null string representing a symbol
+     */
+    public static String newSymbol(TileItem[] corners) {
+        StringBuilder res = new StringBuilder();
+
+        for (TileItem corner : corners) {
+            res.append(corner.getSymbol());
+        }
+
+        return res.toString();
+    }
+
+    public static boolean isValidCorners(TileItem[] corners) {
+        return isValidSymbol(newSymbol(corners));
+    }
+
+    /**
      * Create a tile without neighbours
      * @param corners a non-null array of non-null items
      * @return a non-null tile
