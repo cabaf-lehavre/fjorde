@@ -11,7 +11,7 @@ import java.util.Map;
 public class Plateau extends JPanel {
 
     // TODO configure me
-    public static final boolean DEBUG = false;
+    public static final boolean DEBUG = Boolean.parseBoolean(System.getProperty("fjorde.debug", "true"));
 
     private TileSet tiles;
     private Polygon[][] tabP;
