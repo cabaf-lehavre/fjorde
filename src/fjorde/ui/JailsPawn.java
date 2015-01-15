@@ -1,6 +1,5 @@
 package fjorde.ui;
 
-import fjorde.Bag;
 import fjorde.Player;
 import fjorde.PlayerItem;
 
@@ -20,7 +19,6 @@ public class JailsPawn extends JPanel implements ActionListener{
     JLabel remainingJails;
     JLabel remainingPaws;
     Player player;
-    Bag bag;
     int buttonSelection;
 
 
@@ -52,7 +50,6 @@ public class JailsPawn extends JPanel implements ActionListener{
      */
     public JailsPawn(Player player) {
         this.player = player;
-        this.bag = new Bag(player, 4, 20);
 
         setLayout(new GridLayout(2,1));
 
@@ -80,8 +77,8 @@ public class JailsPawn extends JPanel implements ActionListener{
      * just the number of remaining jail/paws
      */
     private void updateCounters() {
-        remainingJails.setText("       x    " + bag.getRemainingJails());
-        remainingPaws.setText("        x   " + bag.getRemainingPawns());
+        remainingJails.setText("       x    " + player.getBag().getRemainingJails());
+        remainingPaws.setText("        x   " + player.getBag().getRemainingPawns());
     }
 
     private void clearSelection() {
@@ -98,9 +95,9 @@ public class JailsPawn extends JPanel implements ActionListener{
         try {
             switch (buttonSelection) {
                 case 1:
-                    return bag.getJail();
+                    return player.getBag().getJail();
                 case 2:
-                    return bag.getPawn();
+                    return player.getBag().getPawn();
                 default:
                     return null;
             }
@@ -111,7 +108,7 @@ public class JailsPawn extends JPanel implements ActionListener{
     }
 
     public void putItem(PlayerItem item) {
-        bag.put(item);
+        player.getBag().put(item);
         updateCounters();
     }
 

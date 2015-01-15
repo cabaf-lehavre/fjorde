@@ -2,6 +2,7 @@ package fjorde.ui; /**
  * @author Alexandre BAPTISTE
  */
 
+import fjorde.Bag;
 import fjorde.Player;
 import fjorde.PlayerItem;
 import fjorde.Tile;
@@ -27,8 +28,11 @@ public class Hexagone extends JFrame {
         panelPlateau.setLayout(null);
         panelPlateau.addMouseListener(new MouseManager());
 
-        jailsPawn = new JailsPawn(new Player(1, "Mickael", "Noir"));
-        scoreBoard = new Scoreboard(new Player(1, "Michael", "Noir"), new Player(1, "Fucking Bay", "Noir"));
+        Player michael = new Player(1, "Mickael", "Noir", new Bag(4, 20));
+        Player bay = new Player(1, "Fucking Bay", "Noir", new Bag(4, 20));
+
+        jailsPawn = new JailsPawn(michael);
+        scoreBoard = new Scoreboard(michael, bay);
         draw = new Draw();
 
         JPanel panelPioches = new JPanel(new GridLayout(3, 1));

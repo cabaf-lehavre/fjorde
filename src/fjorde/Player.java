@@ -6,12 +6,15 @@ public class Player
     private String name;
     private String color;
     private int score;
+    private Bag bag;
 
-    public Player(int id, String name, String color)
+    public Player(int id, String name, String color, Bag bag)
     {
         this.id = id;
         this.name = name;
         this.color = color;
+        this.bag = bag;
+        this.bag.setPlayer(this);
     }
 
     public int getId() {
@@ -58,6 +61,15 @@ public class Player
 
     public void minusScore(int delta) {
         plusScore(-delta);
+    }
+
+    public Bag getBag() {
+        return bag;
+    }
+
+    public void setBag(Bag bag) {
+        this.bag = bag;
+        this.bag.setPlayer(this);
     }
 
     @Override

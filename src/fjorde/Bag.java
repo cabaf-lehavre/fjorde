@@ -8,18 +8,16 @@ import fjorde.items.Pawn;
  * @author Antoine CHAUVIN
  */
 public class Bag {
-    private final Player player;
+    private Player player;
     private int remainingJails;
     private int remainingPawns;
 
     /**
      *
-     * @param player, bag's owner
      * @param remainingJails current number of jails
      * @param remainingPawns current number of pawns
      */
-    public Bag( Player player, int remainingJails, int remainingPawns ){
-        this.player = player;
+    public Bag(int remainingJails, int remainingPawns ){
         this.remainingJails = remainingJails;
         this.remainingPawns = remainingPawns;
 
@@ -35,6 +33,10 @@ public class Bag {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     /**
