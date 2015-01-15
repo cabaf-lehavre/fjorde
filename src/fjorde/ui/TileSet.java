@@ -65,8 +65,8 @@ public class TileSet {
     }
 
     public boolean trySet(int x, int y, Tile tile) {
-        System.out.println("Cond canPutTile: " + canPutTile(tile));
-        if (!present(x, y) && canPutTile(tile)) {
+        //System.out.println("Cond canPutTile: " + canPutTile(tile));
+        if (!present(x, y) /*&& canPutTile(tile)*/) {
             set(x, y, tile);
             return true;
         }
