@@ -1,4 +1,4 @@
-/**
+package fjorde.ui; /**
  * @author Alexandre BAPTISTE
  */
 

@@ -42,6 +42,9 @@ public class Bag {
      * @return the player Pawn
      */
     public Pawn getPawn() {
+        if (remainingPawns <= 0) {
+            return null;
+        }
         remainingPawns --;
         return new Pawn(player);
     }
@@ -51,6 +54,9 @@ public class Bag {
      * @return the player jail
      */
     public Jail getJail() {
+        if (remainingJails <= 0) {
+            return null;
+        }
         remainingJails --;
         return new Jail(player);
     }

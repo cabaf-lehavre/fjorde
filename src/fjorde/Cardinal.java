@@ -13,4 +13,9 @@ public enum Cardinal {
     SOUTH_WEST,
     WEST,
     NORTH_WEST,
+    ;
+
+    public static int neighbourIndexOpposite(int i) {
+        return i < 3 ? i + 3 : i - 3;
+    }
 }
