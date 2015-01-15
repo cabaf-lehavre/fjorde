@@ -12,6 +12,22 @@ public class Game {
         this.players = new Player[]{left, right};
     }
 
+    public Player getPlayer(int i) {
+        return players[i];
+    }
+
+    public Player getFirstPlayer() {
+        return getPlayer(0);
+    }
+
+    public Player getSecondPlayer() {
+        return getPlayer(1);
+    }
+
+    public int getCurrentPlayerIndex() {
+        return currentPlayer;
+    }
+
     public Player getCurrentPlayer() {
         return players[currentPlayer];
     }
