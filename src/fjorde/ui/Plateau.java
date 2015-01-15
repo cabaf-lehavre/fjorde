@@ -6,6 +6,8 @@ import fjorde.items.Pawn;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Map;
 
 public class Plateau extends JPanel {
@@ -45,6 +47,13 @@ public class Plateau extends JPanel {
         tiles.set(10, 10, Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
                 TileItems.PLAIN, TileItems.PLAIN,
                 TileItems.PLAIN, TileItems.PLAIN));
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                repaint();
+            }
+        });
     }
 
     /**
@@ -100,6 +109,8 @@ public class Plateau extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        Point mouse = getMousePosition();
+
         for (int i = 0; i < 50; i++) {
             for (int j = 0; j < 50; j++) {
                 Polygon p   = tabP[i][j];
@@ -112,6 +123,10 @@ public class Plateau extends JPanel {
                     g.setColor(Color.red);
                     g.drawString(i + "," + j, (int) b.getX() + 5, (int) b.getY() + 25);
                     g.setColor(Color.black);
+
+                    if (mouse != null && p.contains(mouse)) {
+                        drawNeighbours(g, i, j);
+                    }
                 }
 
                 if (t != null) {
@@ -139,5 +154,21 @@ public class Plateau extends JPanel {
 
     private void drawCircleInMiddleOf(Graphics g, Rectangle bounds, int size) {
         g.fillOval((int) bounds.getCenterX() - size / 2, (int) bounds.getCenterY() - size / 2, size, size);
+    }
+
+    private void drawNeighbours(Graphics g, int x, int y) {
+        Font oldFont = g.getFont();
+        g.setFont(oldFont.deriveFont(Font.BOLD, 13));
+        int[][] positions = tiles.aroundPosition(x, y);
+        for (int i = 0; i < positions.length; i++) {
+            int[] pos = positions[i];
+            Polygon p = tabP[pos[0]][pos[1]];
+            if (p == null) {
+                continue;
+            }
+            Rectangle b = p.getBounds();
+            g.drawString(Integer.toString(i), (int) b.getX() + 15, (int) b.getY() + 35);
+        }
+        g.setFont(oldFont);
     }
 }
