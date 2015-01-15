@@ -72,8 +72,9 @@ public class Tile {
 	public Tile getNeighbour(int i) {
 		return neighbours[i];
 	}
-
-	/**
+    public Tile[] getAllNeighbours() {return neighbours;}
+    public TileItem[] getAllCorner() {return corners;}
+    /**
 	 * Get a neighbour on the given cardinal point
 	 * @param c a non-null cardinal point different of NORTH and WEST
 	 * @return a nullable tile
@@ -114,6 +115,8 @@ public class Tile {
 		// TODO
 		return true;
 	}
+
+
 
 	/**
 	 * Get the item present on this tile

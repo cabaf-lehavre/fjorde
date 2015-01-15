@@ -20,7 +20,7 @@ public class JailsPawn extends JPanel implements ActionListener{
     JLabel remainingJails;
     JLabel remainingPaws;
     Player player;
-    Bag bag = new Bag(player,4,20);
+    Bag bag;
     int buttonSelection;
 
 
@@ -52,6 +52,7 @@ public class JailsPawn extends JPanel implements ActionListener{
      */
     public JailsPawn(Player player) {
         this.player = player;
+        this.bag = new Bag(player, 4, 20);
 
         setLayout(new GridLayout(2,1));
 
@@ -59,7 +60,6 @@ public class JailsPawn extends JPanel implements ActionListener{
         pawnButton = new JButton();
         remainingJails = new JLabel();
         remainingPaws = new JLabel();
-
         jailButton.setBackground(Color.WHITE);
         pawnButton.setBackground(Color.WHITE);
         jailButton.setIcon(new ImageIcon("img/jail.png"));

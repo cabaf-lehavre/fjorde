@@ -32,6 +32,7 @@ public class Draw extends JPanel implements MouseListener {
     public void closedDraw() {
         closed.draw(); // draw and forget
         updateSprites();
+        clearDeckSelection();
     }
 
     /**
@@ -40,6 +41,7 @@ public class Draw extends JPanel implements MouseListener {
     public void closedDeposit(){
         opened.deposit(closed.draw()); // draw and put in open deck
         updateSprites();
+        clearDeckSelection();
     }
 
     /**
@@ -70,6 +72,7 @@ public class Draw extends JPanel implements MouseListener {
     public void previousOpened(){
         opened.shiftLeft();
         updateSprites();
+        clearDeckSelection();
     }
 
     /**
@@ -78,6 +81,7 @@ public class Draw extends JPanel implements MouseListener {
     public void nextOpened(){
         opened.shiftRight();
         updateSprites();
+        clearDeckSelection();
     }
 
     /**
