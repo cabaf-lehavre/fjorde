@@ -46,6 +46,9 @@ public class Hexagone extends JFrame {
         panelPioches.add(jailsPawn);
         panelPioches.add(scoreBoard);
 
+        add(panelPlateau);
+        add(panelPioches, BorderLayout.EAST);
+
         setTitle("Fjorde");
         setLocation(500, 200);
         setSize(1025,740);

@@ -93,50 +93,53 @@ public class TileSet {
         }
 
         for (int intNeighbour = 0; intNeighbour < Tile.CORNERS; intNeighbour++) {
+
             if (tileCurrent.getNeighbour(intNeighbour) != null) {
+
+
                 if (intNeighbour == 0) {
-                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(4) == tileCurrent.getCorner(0) &&
-                            tileCurrent.getNeighbour(intNeighbour).getCorner(3) == tileCurrent.getCorner(1)) {
+                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(4).getSymbol().equals(tileCurrent.getCorner(0).getSymbol()) &&
+                            tileCurrent.getNeighbour(intNeighbour).getCorner(3).getSymbol().equals(tileCurrent.getCorner(1).getSymbol())) {
                         boolCheck[intNeighbour] = true;
                     } else {
                         boolCheck[intNeighbour] = false;
                     }
                 }
                 if (intNeighbour == 1) {
-                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(5) == tileCurrent.getCorner(1) &&
-                            tileCurrent.getNeighbour(intNeighbour).getCorner(4) == tileCurrent.getCorner(2)) {
+                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(5).getSymbol().equals(tileCurrent.getCorner(1).getSymbol()) &&
+                            tileCurrent.getNeighbour(intNeighbour).getCorner(4).getSymbol().equals(tileCurrent.getCorner(2).getSymbol())) {
                         boolCheck[intNeighbour] = true;
                     } else {
                         boolCheck[intNeighbour] = false;
                     }
                 }
                 if (intNeighbour == 2) {
-                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(0) == tileCurrent.getCorner(2) &&
-                            tileCurrent.getNeighbour(intNeighbour).getCorner(5) == tileCurrent.getCorner(3)) {
+                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(0).getSymbol().equals(tileCurrent.getCorner(2).getSymbol())  &&
+                            tileCurrent.getNeighbour(intNeighbour).getCorner(5).getSymbol().equals(tileCurrent.getCorner(3).getSymbol())) {
                         boolCheck[intNeighbour] = true;
                     } else {
                         boolCheck[intNeighbour] = false;
                     }
                 }
                 if (intNeighbour == 3) {
-                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(1) == tileCurrent.getCorner(3) &&
-                            tileCurrent.getNeighbour(intNeighbour).getCorner(0) == tileCurrent.getCorner(4)) {
+                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(1).getSymbol().equals(tileCurrent.getCorner(3).getSymbol()) &&
+                            tileCurrent.getNeighbour(intNeighbour).getCorner(0).getSymbol().equals(tileCurrent.getCorner(4).getSymbol())) {
                         boolCheck[intNeighbour] = true;
                     } else {
                         boolCheck[intNeighbour] = false;
                     }
                 }
                 if (intNeighbour == 4) {
-                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(2) == tileCurrent.getCorner(4) &&
-                            tileCurrent.getNeighbour(intNeighbour).getCorner(1) == tileCurrent.getCorner(5)) {
+                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(2).getSymbol().equals(tileCurrent.getCorner(4).getSymbol()) &&
+                            tileCurrent.getNeighbour(intNeighbour).getCorner(1).getSymbol().equals(tileCurrent.getCorner(5).getSymbol())) {
                         boolCheck[intNeighbour] = true;
                     } else {
                         boolCheck[intNeighbour] = false;
                     }
                 }
                 if (intNeighbour == 5) {
-                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(3) == tileCurrent.getCorner(5) &&
-                            tileCurrent.getNeighbour(intNeighbour).getCorner(2) == tileCurrent.getCorner(0)) {
+                    if (tileCurrent.getNeighbour(intNeighbour).getCorner(3).getSymbol().equals(tileCurrent.getCorner(5).getSymbol()) &&
+                            tileCurrent.getNeighbour(intNeighbour).getCorner(2).getSymbol().equals(tileCurrent.getCorner(0).getSymbol())) {
                         boolCheck[intNeighbour] = true;
                     } else {
                         boolCheck[intNeighbour] = false;
@@ -145,11 +148,12 @@ public class TileSet {
             }
         }
         for (int cptTab = 0; cptTab < Tile.CORNERS; cptTab++) {
-            if (bool[cptTab] == bool[cptTab]) {
-                nbNeighbourCheck++;
+            if (boolCheck[cptTab] == bool[cptTab]) {
+                if (boolCheck[cptTab]==true)nbNeighbourCheck++;
             }
         }
         if (nbNeighbour == nbNeighbourCheck) {
+            if (nbNeighbour==1)return false;
             return true;
         }
         return false;
