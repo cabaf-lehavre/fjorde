@@ -85,6 +85,7 @@ public class Plateau extends JPanel {
 
                 Tile t = tiles.tryGet(i, j);
                 if (t != null) {
+                    if(Regles.canPutItem(item, t))
                     t.setItem(item);
                     repaint();
                 }
