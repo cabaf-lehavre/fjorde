@@ -1,3 +1,5 @@
+package fjorde.ui;
+
 import fjorde.Bag;
 import fjorde.Player;
 import fjorde.PlayerItem;

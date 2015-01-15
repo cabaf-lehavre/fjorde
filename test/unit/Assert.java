@@ -26,4 +26,11 @@ public final class Assert {
                     "%d != %d: %s", left, right, msg));
         }
     }
+
+    public static void assertSameIdent(Object left, Object right, String msg) {
+        if (left != right) {
+            throw new AssertionError(String.format(
+                    "%s is not %s: %s", left, right, msg));
+        }
+    }
 }

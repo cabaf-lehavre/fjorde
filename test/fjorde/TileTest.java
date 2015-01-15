@@ -7,12 +7,23 @@ import static unit.Assert.assertEquals;
 
 public class TileTest {
     public static void main(String[] args) {
-        // create a tile composed of mountains only
+        testSymbolGeneration();
+        testRotation();
+        testSampling();
+
+        System.out.println("success");
+    }
+
+    private static void testSymbolGeneration() {
         Tile tile = Tiles.of(MOUNTAIN, MOUNTAIN, MOUNTAIN,
-                             MOUNTAIN, MOUNTAIN, MOUNTAIN);
+                MOUNTAIN, MOUNTAIN, MOUNTAIN);
 
         assertEquals(tile.getSymbol(), "MMMMMM", "wrong symbol");
+    }
 
+    private static void testRotation() {
+        Tile tile = Tiles.of(MOUNTAIN, MOUNTAIN, MOUNTAIN,
+                MOUNTAIN, MOUNTAIN, MOUNTAIN);
         tile.rotate();
         assertEquals(tile.getSymbol(), "MMMMMM", "wrong symbol");
 
@@ -25,9 +36,10 @@ public class TileTest {
         Tile tile3 = Tiles.of(PLAIN, PLAIN, PLAIN, PLAIN, PLAIN, SEA);
         tile3.rotate(2);
         assertEquals(tile3.getSymbol(), tile2.getSymbol(), "wrong symbol");
+    }
 
-        Tile sample = Tiles.sample(new Random(System.nanoTime()));
-
-        System.out.println("success");
+    private static void testSampling() {
+        Tiles.sample(new Random(System.nanoTime()));
+        // should not throw an exception
     }
 }
