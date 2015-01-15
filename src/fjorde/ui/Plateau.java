@@ -69,10 +69,11 @@ public class Plateau extends JPanel {
                 if (!p.contains(x, y)) {
                     continue;
                 }
+                System.out.println("Ind 1 :" + tiles.canPutTile(tile));
                 if (tiles.trySet(i, j, tile)) {
                     repaint();
                 }
-                System.out.print(tiles.canPutTile(tile));
+                System.out.print("Ind 2 :" + tiles.canPutTile(tile));
 
                 break;
             }

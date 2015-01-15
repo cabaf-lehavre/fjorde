@@ -65,7 +65,8 @@ public class TileSet {
     }
 
     public boolean trySet(int x, int y, Tile tile) {
-        if (!present(x, y)) {
+        System.out.println("Cond canPutTile: " + canPutTile(tile));
+        if (!present(x, y) && canPutTile(tile)) {
             set(x, y, tile);
             return true;
         }
@@ -153,7 +154,7 @@ public class TileSet {
             }
         }
         if (nbNeighbour == nbNeighbourCheck) {
-            if (nbNeighbour==1)return false;
+            if (nbNeighbour<2 )return false;
             return true;
         }
         return false;
