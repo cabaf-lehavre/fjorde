@@ -12,6 +12,7 @@ public class TileSetTest {
         System.out.println("success");
     }
 
+    @SuppressWarnings("deprecation")
     public static void testSet() {
         Random rand = new Random(System.nanoTime());
         TileSet ts = new TileSet(50, 50);
@@ -20,9 +21,9 @@ public class TileSetTest {
         Tile b = Tiles.sample(rand);
         Tile c = Tiles.sample(rand);
 
-        ts.set(0, 0, a);
-        ts.set(1, 0, b);
-        ts.set(2, 1, c);
+        ts.init(0, 0, a);
+        ts.init(1, 0, b);
+        ts.init(2, 1, c);
 
         Assert.assertSameIdent(a, b.getNeighbour(Cardinal.NORTH_WEST), "wrong neighbour");
         Assert.assertSameIdent(b, a.getNeighbour(Cardinal.SOUTH_EAST), "wrong neighbour");
