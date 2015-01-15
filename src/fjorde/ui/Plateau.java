@@ -38,15 +38,7 @@ public class Plateau extends JPanel {
         }
 
         // Basics tiles presents at start of the game
-        tiles.set(9, 10, Tiles.of(TileItems.PLAIN, TileItems.SEA,
-                              TileItems.PLAIN, TileItems.PLAIN,
-                              TileItems.MOUNTAIN, TileItems.MOUNTAIN));
-        tiles.set(10, 11, Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN));
-        tiles.set(10, 10, Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN));
+        Plateau.initTileSet(tiles);
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -54,6 +46,20 @@ public class Plateau extends JPanel {
                 repaint();
             }
         });
+    }
+
+    // with great powers come great responsabilities
+    @SuppressWarnings("deprecation")
+    public static void initTileSet(TileSet ts) {
+        ts.init(9, 10, Tiles.of(TileItems.PLAIN, TileItems.SEA,
+                TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.MOUNTAIN, TileItems.MOUNTAIN));
+        ts.init(10, 11, Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN));
+        ts.init(10, 10, Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN));
     }
 
     /**
@@ -163,6 +169,10 @@ public class Plateau extends JPanel {
         int[][] positions = tiles.aroundPosition(x, y);
         for (int i = 0; i < positions.length; i++) {
             int[] pos = positions[i];
+            if (!tiles.inBounds(pos[0], pos[1])) {
+                continue;
+            }
+
             Polygon p = tabP[pos[0]][pos[1]];
             if (p == null) {
                 continue;

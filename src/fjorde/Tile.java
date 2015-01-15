@@ -107,6 +107,26 @@ public class Tile {
 		this.neighbours[i] = neighbour;
 	}
 
+	public void clearNeighbour(int i) {
+		// do nothing if we already cleared the neighbour
+		if (neighbours[i] == null) {
+			return;
+		}
+
+		int j = Cardinal.neighbourIndexOpposite(i);
+
+		// clear from neighbour to self
+		neighbours[i].neighbours[j] = null;
+		// clear from self to neighbour
+		neighbours[i] = null;
+	}
+
+	public void clearNeighbours() {
+		for (int i = 0; i < neighbours.length; i++) {
+			clearNeighbour(i);
+		}
+	}
+
 	private boolean canAddNeighbour(Tile neighbour, int i) {
 		if (this.neighbours[i] != null) {
 			return false;
