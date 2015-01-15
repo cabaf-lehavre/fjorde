@@ -81,7 +81,7 @@ public class TileSet {
         res[1] = new int[]{x, y + 1};
         res[2] = new int[]{x + 1, y + d};
         res[3] = new int[]{x + 1, y - 1 + d};
-        res[4] = new int[]{x, y + 1};
+        res[4] = new int[]{x, y - 1};
         res[5] = new int[]{x - 1, y - 1 + d};
         
         return res;
