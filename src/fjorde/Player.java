@@ -45,24 +45,6 @@ public class Player
         this.color = color;
     }
 
-    public int getScore()
-    {
-        return score;
-    }
-
-    public void setScore(int score)
-    {
-        this.score = score;
-    }
-
-    public void plusScore(int delta) {
-        setScore(getScore() + delta);
-    }
-
-    public void minusScore(int delta) {
-        plusScore(-delta);
-    }
-
     public Bag getBag() {
         return bag;
     }
@@ -70,6 +52,15 @@ public class Player
     public void setBag(Bag bag) {
         this.bag = bag;
         this.bag.setPlayer(this);
+    }
+
+    /**
+     * The closer to zero it is, the better.
+     * @return an positive or zero integer
+     */
+    public int getScore()
+    {
+        return bag.getRemainingPawns();
     }
 
     @Override
