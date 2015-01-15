@@ -24,6 +24,10 @@ public class Deck {
 
     // Drawn last Tile in the deck
     public Tile draw() {
+        // return nothing if there is no tile left
+        if (remaining.isEmpty()) {
+            return null;
+        }
         return remaining.remove(0);
     }
 
@@ -35,6 +39,9 @@ public class Deck {
     }
 
     public void deposit(Tile tile){
+        if (tile == null) {
+            return;
+        }
         remaining.add(0, tile);
     }
 
