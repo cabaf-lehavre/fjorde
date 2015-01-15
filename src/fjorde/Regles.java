@@ -11,8 +11,7 @@ import fjorde.items.Plain;
  * @author Brieuc DE TAPPIE
  */
 public class Regles {
-    public static boolean canPutJail(Tile t){
-
+    public static boolean canPutJail(Tile t) {
         int i;
         for (i = 0; i < Tile.CORNERS; i++) {
             TileItem ti = t.getCorner(i);
@@ -25,20 +24,23 @@ public class Regles {
             return true;
         else return false;
     }
-    public static boolean canPutpawn(Tile t, Player p){
 
-
+    public static boolean canPutpawn(Tile t, Player p) {
         Tile neighbour;
         for (int i = 0; i < Tile.CORNERS ; i++) {
                 neighbour = t.getNeighbour(i);
-                if(neighbour!=null && neighbour.getItem()!=null && neighbour.getItem().getOwner()!=null) {
-                    System.out.println("YOUHOU");
-                    if (neighbour.getItem() instanceof Jail && neighbour.getItem().getOwner().equals(p)) {
-                        System.out.println("DEBUG: 0: " + t.getCorner(i).getSymbol() + " 1 : " + t.getCorner((i + 1) % Tile.CORNERS).getSymbol() + " VOISIN: " +i );
-                        if (t.getCorner(i) instanceof Plain || t.getCorner((i + 1) % Tile.CORNERS) instanceof Plain)
-                            return true;
-                    }
-                }
+
+            if (neighbour == null || neighbour.getItem() == null || neighbour.getItem().getOwner() == null) {
+                continue;
+            }
+
+            if (!(neighbour.getItem() instanceof Jail) && (!(neighbour.getItem() instanceof Pawn) || !neighbour.getItem().getOwner().equals(p))) {
+                continue;
+            }
+
+            if (t.getCorner(i) instanceof Plain || t.getCorner((i + 1) % Tile.CORNERS) instanceof Plain) {
+                return true;
+            }
         }
 
         return false;
