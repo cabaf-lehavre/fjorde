@@ -21,7 +21,7 @@ public class TileSet {
         return tiles[0].length;
     }
 
-    private boolean inBounds(int x, int y) {
+    public boolean inBounds(int x, int y) {
         return x >= 0 && x < getWidth()
             && y >= 0 && y < getHeight();
     }
@@ -46,9 +46,28 @@ public class TileSet {
         return inBounds(x, y) && tryGet(x, y) != null;
     }
 
-    public void set(int x, int y, Tile tile) {
+    /**
+     * @deprecated Some kind of backdoor method initializing a tile on the set
+     *             Please use {@link fjorde.ui.TileSet#set(int, int, fjorde.Tile)}
+     */
+    @Deprecated
+    public void init(int x, int y, Tile tile) {
         tiles[x][y] = tile;
+        addNeighbours(x, y, tile);
+    }
 
+    public boolean set(int x, int y, Tile tile) {
+        addNeighbours(x, y, tile);
+        if (!canPutTile(tile)) {
+            tile.clearNeighbours();
+            return false;
+        }
+
+        tiles[x][y] = tile;
+        return true;
+    }
+
+    public void addNeighbours(int x, int y, Tile tile) {
         int[][] positions = aroundPosition(x, y);
         for (int i = 0; i < positions.length; i++) {
             int[] pos = positions[i];
@@ -64,11 +83,7 @@ public class TileSet {
     }
 
     public boolean trySet(int x, int y, Tile tile) {
-        if (!present(x, y)) {
-            set(x, y, tile);
-            return true;
-        }
-        return false;
+        return !present(x, y) && set(x, y, tile);
     }
     
     public int[][] aroundPosition(int x, int y) {
