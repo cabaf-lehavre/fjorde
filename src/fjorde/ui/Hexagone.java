@@ -16,6 +16,7 @@ public class Hexagone extends JFrame {
     Plateau panelPlateau;
     JailsPawn jailsPawn;
     Draw draw;
+    Scoreboard scoreBoard;
 
     /**
      * Main UI, adding all panel, managers ...
@@ -26,19 +27,21 @@ public class Hexagone extends JFrame {
         panelPlateau.setLayout(null);
         panelPlateau.addMouseListener(new MouseManager());
 
-        jailsPawn = new JailsPawn(new Player(1, "Stephen", "Noir"));
+        jailsPawn = new JailsPawn(new Player(1, "Mickael", "Noir"));
+        scoreBoard = new Scoreboard(new Player(1, "Michael", "Noir"), new Player(1, "Fucking Bay", "Noir"));
         draw = new Draw();
 
-        JPanel panelPioches = new JPanel(new GridLayout(2, 1));
+        JPanel panelPioches = new JPanel(new GridLayout(3, 1));
         panelPioches.add(draw);
         panelPioches.add(jailsPawn);
+        panelPioches.add(scoreBoard);
 
         add(panelPlateau);
         add(panelPioches, BorderLayout.EAST);
 
         setTitle("Fjorde");
-        setLocation(1250, 0);
-        setSize(500,500);
+        setLocation(500, 200);
+        setSize(1025,740);
         setDefaultCloseOperation(3);
         setVisible(true);
     }
