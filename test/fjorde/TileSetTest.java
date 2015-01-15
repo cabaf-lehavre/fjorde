@@ -1,6 +1,5 @@
 package fjorde;
 
-import fjorde.ui.TileSet;
 import unit.Assert;
 
 import java.util.Random;

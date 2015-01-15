@@ -1,7 +1,4 @@
-package fjorde.ui;
-
-import fjorde.Cardinal;
-import fjorde.Tile;
+package fjorde;
 
 /**
  * @author Antoine CHAUVIN INFOB1
@@ -48,7 +45,7 @@ public class TileSet {
 
     /**
      * @deprecated Some kind of backdoor method initializing a tile on the set
-     *             Please use {@link fjorde.ui.TileSet#set(int, int, fjorde.Tile)}
+     *             Please use {@link TileSet#set(int, int, fjorde.Tile)}
      */
     @Deprecated
     public void init(int x, int y, Tile tile) {
