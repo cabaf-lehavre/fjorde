@@ -80,13 +80,16 @@ public class Plateau extends JPanel {
      * @param x Polygon absciss
      * @param y Polygon ordinate
      * @param tile Desired tile
+     * @return {@code true} if the tile has been used, {@code false} otherwise
      */
-    public void clic(int x, int y, Tile tile) {
+    public boolean clic(int x, int y, Tile tile) {
         Point point = reduce(x, y);
 
         if (tiles.trySet(point.x, point.y, tile)) {
             repaint();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -94,15 +97,18 @@ public class Plateau extends JPanel {
      * @param x Polygon absciss
      * @param y Polygon ordinate
      * @param item Selected item
+     * @return {@code false} if the item has been used, {@code false} otherwise
      */
-    public void clic(int x, int y, PlayerItem item) {
+    public boolean clic(int x, int y, PlayerItem item) {
         Point point = reduce(x, y);
         Tile tile = tiles.tryGet(point.x, point.y);
 
         if (tile != null && Regles.canPutItem(item, tile)) {
             tile.setItem(item);
             repaint();
+            return true;
         }
+        return false;
     }
 
     /**
