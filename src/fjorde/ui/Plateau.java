@@ -103,7 +103,7 @@ public class Plateau extends JPanel {
         Point point = reduce(x, y);
         Tile tile = tiles.tryGet(point.x, point.y);
 
-        if (tile != null && Regles.canPutItem(item, tile)) {
+        if (tile != null && item.canPut(tile)) {
             tile.setItem(item);
             repaint();
             return true;

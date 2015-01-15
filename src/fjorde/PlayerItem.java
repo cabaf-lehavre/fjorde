@@ -19,6 +19,8 @@ public abstract class PlayerItem
         this.owner = owner;
     }
 
+    public abstract boolean canPut(Tile tile);
+
     @Override
     public String toString()
     {
