@@ -42,6 +42,7 @@ public class TileSet {
     public void set(int x, int y, Tile tile) {
         tiles[x][y] = tile;
         // todo neighbours
+
     }
 
     public boolean trySet(int x, int y, Tile tile) {
