@@ -1,5 +1,7 @@
 package fjorde;
 
+import java.util.Random;
+
 /**
  * @author Antoine CHAUVIN INFOB1
  */
@@ -11,6 +13,10 @@ public class Game {
 
     public Game(Player left, Player right) {
         this.players = new Player[]{left, right};
+
+        Random random = new Random(System.nanoTime());
+        currentPlayer = random.nextInt(2); // [0;1]
+        currentTurn = new Turn(players[currentPlayer]);
     }
 
     public Player getPlayer(int i) {
