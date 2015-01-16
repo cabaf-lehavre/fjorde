@@ -6,6 +6,8 @@ import fjorde.Player;
 import javax.swing.*;
 import java.awt.*;
 
+import static fjorde.Textures.getImagesBasePath;
+
 /**
  * @author Alexandre BAPTISTE
  */
@@ -24,11 +26,11 @@ public class Scoreboard extends JPanel{
         setLayout(null);
 
         playerOne.setBackground(Color.WHITE);
-        playerOne.setIcon(new ImageIcon("img/barbare1.jpg"));
+        playerOne.setIcon(new ImageIcon(getImagesBasePath() + "barbare1.jpg"));
         playerOne.setBounds(10, 50, 50, 63);
 
         playerTwo.setBackground(Color.WHITE);
-        playerTwo.setIcon( new ImageIcon("img/barbare2.png"));
+        playerTwo.setIcon( new ImageIcon(getImagesBasePath() + "barbare2.png"));
         playerTwo.setBounds(10,130,64,50);
 
         update();

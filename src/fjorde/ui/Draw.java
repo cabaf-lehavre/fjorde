@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import static fjorde.Textures.getImagesBasePath;
+import static fjorde.Textures.getTilesBasePath;
+
 /**
  * @author Alexandre BAPTISTE
  */
@@ -51,14 +54,14 @@ public class Draw extends JPanel implements MouseListener {
     public void updateSprites() {
         Tile cls = closed.peek();
         if (cls != null) {
-            closedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", cls.getSymbol())));
+            closedTileButton.setIcon(new ImageIcon(getTilesBasePath() + cls.getSymbol() + ".png"));
         } else {
             closedTileButton.setIcon(null);
         }
 
         Tile opn = opened.peek();
         if (opn != null) {
-            openedTileButton.setIcon(new ImageIcon(String.format("img/tiles/%s.png", opn.getSymbol())));
+            openedTileButton.setIcon(new ImageIcon(getTilesBasePath() + opn.getSymbol() + ".png"));
         } else {
             openedTileButton.setIcon(null);
         }
@@ -103,8 +106,8 @@ public class Draw extends JPanel implements MouseListener {
         nextTile.setBackground(Color.WHITE);
         closedTileButton.setBackground(Color.WHITE);
         openedTileButton.setBackground(Color.WHITE);
-        previousTile.setIcon(new ImageIcon("img/previousArrow.png"));
-        nextTile.setIcon(new ImageIcon("img/nextArrow.jpg"));
+        previousTile.setIcon(new ImageIcon(getImagesBasePath() + "previousArrow.png"));
+        nextTile.setIcon(new ImageIcon(getImagesBasePath() + "nextArrow.jpg"));
 
 
         closedTileButton.setBounds(55,5,50,50);

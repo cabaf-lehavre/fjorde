@@ -11,12 +11,20 @@ import java.util.Map;
 public final class Textures {
     private Textures() {}
 
+    public static String getImagesBasePath() {
+        return System.getProperty("fjorde.img", "img/");
+    }
+
+    public static String getTilesBasePath() {
+        return System.getProperty("fjorde.img.tiles", "img/tiles/");
+    }
+
     /**
      * Get the default base directory containing tile textures
      * @return a non-null file
      */
     public static File getTilesBaseDir() {
-        String path = System.getProperty("fjorde.img.tiles", "img/tiles/");
+        String path = getTilesBasePath();
         File file = new File(path);
         if (!file.exists()) {
             throw new Error("DIRECTORY CONTAINING TILE TEXTURES "+path+" DOESNT EXIST, PLEASE USE -Dfjorde.img.tiles PROPERTY");

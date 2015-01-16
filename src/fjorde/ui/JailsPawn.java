@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static fjorde.Textures.getImagesBasePath;
+
 /**
  * @author Alexandre BAPTISTE
  */
@@ -59,8 +61,8 @@ public class JailsPawn extends JPanel implements ActionListener{
         remainingPaws = new JLabel();
         jailButton.setBackground(Color.WHITE);
         pawnButton.setBackground(Color.WHITE);
-        jailButton.setIcon(new ImageIcon("img/jail.png"));
-        pawnButton.setIcon(new ImageIcon("img/pawn.png"));
+        jailButton.setIcon(new ImageIcon(getImagesBasePath() + "jail.png"));
+        pawnButton.setIcon(new ImageIcon(getImagesBasePath() + "pawn.png"));
 
         updateCounters();
 
