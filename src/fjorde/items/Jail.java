@@ -20,6 +20,7 @@ public class Jail extends PlayerItem
 
     @Override
     public boolean canPut(Tile tile) {
+
         int i;
         for (i = 0; i < Tile.CORNERS; i++) {
             TileItem ti = tile.getCorner(i);
