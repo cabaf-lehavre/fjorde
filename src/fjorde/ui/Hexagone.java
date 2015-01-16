@@ -69,12 +69,16 @@ public class Hexagone extends JFrame {
             if ( paramMouseEvent.getButton() == 1) {
                 Tile selectedTile = draw.getSelectedTile();
                 if (selectedTile != null) {
-                    panelPlateau.clic(x, y, selectedTile);
+                    if (!panelPlateau.clic(x, y, selectedTile)) {
+                        draw.putTile(selectedTile);
+                    }
                 }
 
                 PlayerItem selectedItem = jailsPawn.getSelectedItem();
                 if (selectedItem != null) {
-                    panelPlateau.clic(x, y, selectedItem);
+                    if (!panelPlateau.clic(x, y, selectedItem)) {
+                        jailsPawn.putItem(selectedItem);
+                    }
                 }
 
             }

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 public class Plateau extends JPanel {
 
@@ -38,15 +39,7 @@ public class Plateau extends JPanel {
         }
 
         // Basics tiles presents at start of the game
-        tiles.set(9, 10, Tiles.of(TileItems.PLAIN, TileItems.SEA,
-                              TileItems.PLAIN, TileItems.PLAIN,
-                              TileItems.MOUNTAIN, TileItems.MOUNTAIN));
-        tiles.set(10, 11, Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN));
-        tiles.set(10, 10, Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN));
+        Plateau.initTileSet(tiles);
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -56,26 +49,47 @@ public class Plateau extends JPanel {
         });
     }
 
+    // with great powers come great responsabilities
+    @SuppressWarnings("deprecation")
+    public static void initTileSet(TileSet ts) {
+        ts.init(9, 10, Tiles.of(TileItems.PLAIN, TileItems.SEA,
+                TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.MOUNTAIN, TileItems.MOUNTAIN));
+        ts.init(10, 11, Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN));
+        ts.init(10, 10, Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN,
+                TileItems.PLAIN, TileItems.PLAIN));
+    }
+
+    private Point reduce(int x, int y) {
+        for (int i = 0; i < 50; i++) {
+            for (int j = 0; j < 50; j++) {
+                Polygon p = tabP[i][j];
+                if (p.contains(x, y)) {
+                    return new Point(i, j);
+                }
+            }
+        }
+        throw new NoSuchElementException("no polygon found on (" + x + "," + y + ")");
+    }
+
     /**
      *
      * @param x Polygon absciss
      * @param y Polygon ordinate
      * @param tile Desired tile
+     * @return {@code true} if the tile has been used, {@code false} otherwise
      */
-    public void clic(int x, int y, Tile tile) {
-        for (int i = 0; i < 50; i++) {
-            for (int j = 0; j < 50; j++) {
-                Polygon p = tabP[i][j];
-                if (!p.contains(x, y)) {
-                    continue;
-                }
+    public boolean clic(int x, int y, Tile tile) {
+        Point point = reduce(x, y);
 
-                if (tiles.trySet(i, j, tile)) {
-                    repaint();
-                }
-                break;
-            }
+        if (tiles.trySet(point.x, point.y, tile)) {
+            repaint();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -83,24 +97,18 @@ public class Plateau extends JPanel {
      * @param x Polygon absciss
      * @param y Polygon ordinate
      * @param item Selected item
+     * @return {@code false} if the item has been used, {@code false} otherwise
      */
-    public void clic(int x, int y, PlayerItem item) {
-        for (int i = 0; i < 50; i++) {
-            for (int j = 0; j < 50; j++) {
-                Polygon p = tabP[i][j];
-                if (!p.contains(x, y)) {
-                    continue;
-                }
+    public boolean clic(int x, int y, PlayerItem item) {
+        Point point = reduce(x, y);
+        Tile tile = tiles.tryGet(point.x, point.y);
 
-                Tile t = tiles.tryGet(i, j);
-                if (t != null) {
-                    if(Regles.canPutItem(item, t))
-                    t.setItem(item);
-                    repaint();
-                }
-                break;
-            }
+        if (tile != null && item.canPut(tile)) {
+            tile.setItem(item);
+            repaint();
+            return true;
         }
+        return false;
     }
 
     /**
@@ -163,6 +171,10 @@ public class Plateau extends JPanel {
         int[][] positions = tiles.aroundPosition(x, y);
         for (int i = 0; i < positions.length; i++) {
             int[] pos = positions[i];
+            if (!tiles.inBounds(pos[0], pos[1])) {
+                continue;
+            }
+
             Polygon p = tabP[pos[0]][pos[1]];
             if (p == null) {
                 continue;
