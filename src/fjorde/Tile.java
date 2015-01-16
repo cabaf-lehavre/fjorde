@@ -11,6 +11,7 @@ public class Tile {
 	 */
 	public static final int CORNERS = 6;
 
+
 	private TileItem[] corners;
 	private Tile[] neighbours;
 	private PlayerItem item;

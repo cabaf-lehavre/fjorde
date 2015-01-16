@@ -1,5 +1,8 @@
 package fjorde;
 
+import java.io.File;
+import java.util.Scanner;
+
 /**
  * @author Antoine CHAUVIN INFOB1
  */
@@ -110,6 +113,25 @@ public class TileSet {
     public boolean trySet(int x, int y, Tile tile) {
         return !present(x, y) && set(x, y, tile);
     }
+
+    @SuppressWarnings("deprecation")
+    public void fromFile(File file){
+
+        try {
+            String[] tmp;
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext())
+            {
+                tmp=sc.next().split(",");
+                init(Integer.parseInt(tmp[0]),Integer.parseInt(tmp[1]),Tiles.of(TileItems.getValue(tmp[2].charAt(0)),TileItems.getValue(tmp[2].charAt(1)),TileItems.getValue(tmp[2].charAt(2)),TileItems.getValue(tmp[2].charAt(3)),TileItems.getValue(tmp[2].charAt(4)),TileItems.getValue(tmp[2].charAt(5))));
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("ERREUR FILE DOESNT EXIST");
+        }
+    }
+
 
     public int[][] aroundPosition(int x, int y) {
         // auto-correct neighbour ordinates

@@ -5,10 +5,10 @@ import fjorde.items.Jail;
 import fjorde.items.Pawn;
 
 import javax.swing.*;
-import javax.swing.text.StringContent;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -16,6 +16,7 @@ public class Plateau extends JPanel {
 
     // TODO configure me
     public static final boolean DEBUG = Boolean.parseBoolean(System.getProperty("fjorde.debug", "true"));
+    public static final String MAP_LOCATION =System.getProperty("fjorde.map-location", "init.txt");
 
     private TileSet tiles;
     private Polygon[][] tabP;
@@ -53,7 +54,8 @@ public class Plateau extends JPanel {
     // with great powers come great responsabilities
     @SuppressWarnings("deprecation")
     public static void initTileSet(TileSet ts) {
-        ts.init(9, 10, Tiles.of(TileItems.PLAIN, TileItems.SEA,
+
+        /*ts.init(9, 10, Tiles.of(TileItems.PLAIN, TileItems.SEA,
                 TileItems.PLAIN, TileItems.PLAIN,
                 TileItems.MOUNTAIN, TileItems.MOUNTAIN));
         ts.init(10, 11, Tiles.of(TileItems.PLAIN, TileItems.PLAIN,
@@ -61,7 +63,8 @@ public class Plateau extends JPanel {
                 TileItems.PLAIN, TileItems.PLAIN));
         ts.init(10, 10, Tiles.of(TileItems.MOUNTAIN, TileItems.PLAIN,
                 TileItems.PLAIN, TileItems.PLAIN,
-                TileItems.PLAIN, TileItems.PLAIN));
+                TileItems.PLAIN, TileItems.PLAIN));*/
+        ts.fromFile(new File(MAP_LOCATION));
     }
 
     private Point reduce(int x, int y) {
