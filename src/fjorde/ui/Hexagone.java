@@ -2,11 +2,7 @@ package fjorde.ui; /**
  * @author Alexandre BAPTISTE
  */
 
-import fjorde.Bag;
-import fjorde.Game;
-import fjorde.Player;
-import fjorde.PlayerItem;
-import fjorde.Tile;
+import fjorde.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,8 +55,11 @@ public class Hexagone extends JFrame {
     }
 
     void updateJailsPawn() {
+        JailsPawn jp = getCurrentJailsPawn();
         panelPioches.remove(1);
-        panelPioches.add(jailsPawns[game.getCurrentTurnIndex()], 1);
+        panelPioches.add(jp, 1);
+        jp.updateCounters();
+        repaint();
     }
 
     JailsPawn getCurrentJailsPawn() {
@@ -81,9 +80,13 @@ public class Hexagone extends JFrame {
                     y = paramMouseEvent.getY();
 
             if ( paramMouseEvent.getButton() == 1) {
+                Turn turn = game.getCurrentTurn();
+
                 Tile selectedTile = draw.getSelectedTile();
                 if (selectedTile != null) {
-                    if (!panelPlateau.clic(x, y, selectedTile)) {
+                    if (turn.canMoveTile() && panelPlateau.clic(x, y, selectedTile)) {
+                        turn.incNrTilesMoved();
+                    } else {
                         draw.putTile(selectedTile);
                     }
                 }
@@ -91,13 +94,15 @@ public class Hexagone extends JFrame {
                 JailsPawn jailsPawn = getCurrentJailsPawn();
                 PlayerItem selectedItem = jailsPawn.getSelectedItem();
                 if (selectedItem != null) {
-                    if (!panelPlateau.clic(x, y, selectedItem)) {
+                    if (turn.canMove(selectedItem) && panelPlateau.clic(x, y, selectedItem)) {
+                        turn.incNrItemsMoved();
+                    } else {
                         jailsPawn.putItem(selectedItem);
                     }
                 }
 
-                scoreBoard.update();
                 game.tryPassTurn();
+                scoreBoard.update();
                 updateJailsPawn();
             }
         }

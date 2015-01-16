@@ -76,7 +76,7 @@ public class JailsPawn extends JPanel implements ActionListener{
     /**
      * just the number of remaining jail/paws
      */
-    private void updateCounters() {
+    public void updateCounters() {
         remainingJails.setText("       x    " + player.getBag().getRemainingJails());
         remainingPaws.setText("        x   " + player.getBag().getRemainingPawns());
     }
