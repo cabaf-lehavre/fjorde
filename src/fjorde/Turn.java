@@ -56,4 +56,8 @@ public class Turn {
     public boolean canMovePawn() {
         return !canMoveTile() && canMoveItem() && !hasJails() && hasPawns();
     }
+
+    public boolean isOver() {
+        return !canMovePawn();
+    }
 }

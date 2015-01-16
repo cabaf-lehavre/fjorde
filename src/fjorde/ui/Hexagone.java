@@ -90,6 +90,7 @@ public class Hexagone extends JFrame {
                 }
 
                 scoreBoard.update();
+                game.tryPassTurn();
             }
         }
     }

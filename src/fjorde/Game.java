@@ -38,6 +38,12 @@ public class Game {
         currentTurn = new Turn(players[currentPlayer]);
     }
 
+    public void tryPassTurn() {
+        if (getCurrentTurn().isOver()) {
+            passTurn();
+        }
+    }
+
     public Player getWinner() {
         if (players[0].getScore() == 0) {
             return players[0];
