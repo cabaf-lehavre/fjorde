@@ -7,6 +7,7 @@ public class Game {
     private final Player[] players;
 
     private int currentPlayer;
+    private Turn currentTurn;
 
     public Game(Player left, Player right) {
         this.players = new Player[]{left, right};
@@ -24,16 +25,13 @@ public class Game {
         return getPlayer(1);
     }
 
-    public int getCurrentPlayerIndex() {
-        return currentPlayer;
-    }
-
-    public Player getCurrentPlayer() {
-        return players[currentPlayer];
+    public Turn getCurrentTurn() {
+        return currentTurn;
     }
 
     public void passTurn() {
         currentPlayer = 1 - currentPlayer;
+        currentTurn = new Turn(player);
     }
 
     public Player getWinner() {
