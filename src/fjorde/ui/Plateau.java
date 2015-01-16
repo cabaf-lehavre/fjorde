@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 public class Plateau extends JPanel {
 
     // TODO configure me
-    public static final boolean DEBUG = Boolean.parseBoolean(System.getProperty("fjorde.debug", "true"));
+    public static final boolean DEBUG = Boolean.parseBoolean(System.getProperty("fjorde.debug", "false"));
 
     private TileSet tiles;
     private Polygon[][] tabP;
