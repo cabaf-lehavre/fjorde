@@ -14,6 +14,20 @@ public final class TileItems {
     private TileItems() {}
 
     public static final int SEA = 1, PLAIN = 2, MOUNTAIN = 3;
+    public static int getValue(char c){
+        switch (c)
+        {
+            case 'S':
+                return TileItems.SEA;
+            case 'P':
+                return TileItems.PLAIN;
+            case 'M':
+                return TileItems.MOUNTAIN;
+
+        }
+        return 'X';
+
+    }
 
     public static Sea createSea() {
         return new Sea();

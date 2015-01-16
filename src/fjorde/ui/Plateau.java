@@ -5,6 +5,7 @@ import fjorde.items.Jail;
 import fjorde.items.Pawn;
 
 import javax.swing.*;
+import javax.swing.text.StringContent;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -83,8 +84,9 @@ public class Plateau extends JPanel {
      * @return {@code true} if the tile has been used, {@code false} otherwise
      */
     public boolean clic(int x, int y, Tile tile) {
-        Point point = reduce(x, y);
 
+
+        Point point = reduce(x, y);
         if (tiles.trySet(point.x, point.y, tile)) {
             repaint();
             return true;
@@ -110,6 +112,8 @@ public class Plateau extends JPanel {
         }
         return false;
     }
+
+
 
     /**
      * Main method, which allows to "add" image to background

@@ -34,7 +34,33 @@ public class TileSet {
         }
         return tile;
     }
-
+    public String getStateTable(){
+        String retour="";
+        for (int i = 0; i < tiles.length; i++) {
+            for (int j = 0; j < tiles.length; j++) {
+                if (tiles[i][j] != null) {
+                    retour += "ts.init(" + i + "," + "Tiles.of(";
+                    for (int x = 0; x < 6; x++) {
+                        retour += TileItems.getValue(tiles[i][j].getCorner(x).getSymbol().charAt(0));
+                        if (x != 5) retour += ",";
+                    }
+                    retour += "));\n";
+                }
+            }
+        }
+        return retour;
+    }
+    public String tabToString(int[] tab){
+        String s="";
+        //{20 + vX, 40 + vX, 40 + vX, 20 + vX, 0 + vX, 0 + vX}
+        s+="{";
+        for(int i=0;i<tab.length;i++) {
+            s += tab[i];
+            if(tab.length-1!=i)s +=",";
+        }
+        s+="}";
+        return s;
+    }
     public Tile weakGet(int x, int y) {
         return inBounds(x, y) ? tryGet(x, y) : null;
     }
@@ -51,10 +77,12 @@ public class TileSet {
     public void init(int x, int y, Tile tile) {
         tiles[x][y] = tile;
         addNeighbours(x, y, tile);
+
     }
 
     public boolean set(int x, int y, Tile tile) {
         addNeighbours(x, y, tile);
+        System.out.println(getStateTable());
         if (!canPutTile(tile)) {
             tile.clearNeighbours();
             return false;
