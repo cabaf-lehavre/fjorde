@@ -1,6 +1,8 @@
 package fjorde.ui;
-import fjorde.Bag;
+
+import fjorde.Game;
 import fjorde.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,7 +16,9 @@ public class Scoreboard extends JPanel{
     JButton playerOne = new JButton();
     JButton playerTwo = new JButton();
 
-    public Scoreboard(Player player_one, Player player_two) {
+    public Scoreboard(Game game) {
+        Player player_one = game.getFirstPlayer(),
+                player_two = game.getSecondPlayer();
 
         setLayout(null);
         playerOneScore.setText(player_one.getName() + ": " + player_one.getScore());

@@ -35,7 +35,7 @@ public class Hexagone extends JFrame {
         panelPlateau.addMouseListener(new MouseManager());
 
         jailsPawn = new JailsPawn(michael);
-        scoreBoard = new Scoreboard(michael, bay);
+        scoreBoard = new Scoreboard(game);
         draw = new Draw();
 
         JPanel panelPioches = new JPanel(new GridLayout(3, 1));
