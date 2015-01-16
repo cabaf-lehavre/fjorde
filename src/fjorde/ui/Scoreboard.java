@@ -24,8 +24,8 @@ public class Scoreboard extends JPanel{
         setLayout(null);
 
         playerOne.setBackground(Color.WHITE);
-        playerOne.setIcon( new ImageIcon("img/barbare1.jpg"));
-        playerOne.setBounds(10,50,50,63);
+        playerOne.setIcon(new ImageIcon("img/barbare1.jpg"));
+        playerOne.setBounds(10, 50, 50, 63);
 
         playerTwo.setBackground(Color.WHITE);
         playerTwo.setIcon( new ImageIcon("img/barbare2.png"));
@@ -47,6 +47,14 @@ public class Scoreboard extends JPanel{
 
         playerOneScore.setText(player_one.getName() + ": " + player_one.getScore());
         playerTwoScore.setText(player_two.getName() + ": " + player_two.getScore());
+
+        if (game.getCurrentTurn().getPlayer() == player_one) {
+            playerOneScore.setForeground(Color.red);
+            playerTwoScore.setForeground(Color.black);
+        } else {
+            playerOneScore.setForeground(Color.black);
+            playerTwoScore.setForeground(Color.red);
+        }
     }
 
 }
