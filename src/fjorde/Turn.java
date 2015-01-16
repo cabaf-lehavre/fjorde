@@ -72,4 +72,7 @@ public class Turn {
     public boolean isOver() {
         return nrTilesMoved >= 1 && nrItemsMoved >= 1;
     }
+    public boolean isTilesMoved() {
+        return nrTilesMoved >= 1;
+    }
 }

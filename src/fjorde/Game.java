@@ -19,6 +19,10 @@ public class Game {
         currentTurn = new Turn(players[currentPlayer]);
     }
 
+    public boolean hasPutTile (){
+            return currentTurn.isTilesMoved();
+    }
+
     public Player getPlayer(int i) {
         return players[i];
     }

@@ -36,7 +36,7 @@ public class Hexagone extends JFrame {
             new JailsPawn(second),
         };
         scoreBoard = new Scoreboard(game);
-        draw = new Draw();
+        draw = new Draw(game, scoreBoard);
 
         panelPioches = new JPanel(new GridLayout(3, 1));
         panelPioches.add(draw);

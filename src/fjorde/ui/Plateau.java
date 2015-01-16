@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 
 public class Plateau extends JPanel {
 
-    
+
     public static final boolean DEBUG = Boolean.parseBoolean(System.getProperty("fjorde.debug", "false"));
     public static final String MAP_LOCATION =System.getProperty("fjorde.map-location", "init.txt");
 

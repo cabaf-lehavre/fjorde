@@ -1,6 +1,7 @@
 package fjorde.ui;
 
 import fjorde.Deck;
+import fjorde.Game;
 import fjorde.Tile;
 
 import javax.swing.*;
@@ -18,7 +19,8 @@ public class Draw extends JPanel implements MouseListener {
 
     private Deck opened = new Deck(0);
     private Deck closed = new Deck(40);
-
+    private Game game;
+    private Scoreboard scb;
     private int selectedDeck;
 
     JButton previousTile;
@@ -90,11 +92,13 @@ public class Draw extends JPanel implements MouseListener {
     /**
      * Just constructor with all UI stuff
      */
-    public Draw(){
+    public Draw(Game game, Scoreboard scb){
+        this.game=game;
+        this.scb=scb;
         setLayout(null);
 
-        drawButton    = new JButton("Draw");
-        depositButton = new JButton("Deposit");
+        drawButton    = new JButton("Passe");
+        depositButton = new JButton("Depot");
 
         previousTile     = new JButton();
         nextTile         = new JButton();
@@ -188,7 +192,10 @@ public class Draw extends JPanel implements MouseListener {
         }
 
         if ( e.getSource() == drawButton ) {
-            closedDraw();
+            if(game.hasPutTile()) {
+                game.passTurn();
+                scb.update();
+            }
         }
 
         if ( e.getSource() == depositButton ) {
