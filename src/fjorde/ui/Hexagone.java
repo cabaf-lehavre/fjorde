@@ -17,7 +17,7 @@ public class Hexagone extends JFrame {
 
     Game game;
     Plateau panelPlateau;
-    JailsPawn jailsPawn;
+    JailsPawn[] jailsPawns;
     Draw draw;
     Scoreboard scoreBoard;
 
@@ -34,13 +34,16 @@ public class Hexagone extends JFrame {
         panelPlateau.setLayout(null);
         panelPlateau.addMouseListener(new MouseManager());
 
-		jailsPawn = new JailsPawn(first);
+		jailsPawns = new JailsPawn[]{
+            new JailsPawn(first),
+            new JailsPawn(second),
+        };
         scoreBoard = new Scoreboard(game);
         draw = new Draw();
 
         JPanel panelPioches = new JPanel(new GridLayout(3, 1));
         panelPioches.add(draw);
-        panelPioches.add(jailsPawn);
+        panelPioches.add(jailsPawns[game.getCurrentTurnIndex()]);
         panelPioches.add(scoreBoard);
 
         add(panelPlateau);
@@ -51,6 +54,10 @@ public class Hexagone extends JFrame {
         setSize(975,665);
         setDefaultCloseOperation(3);
         setVisible(true);
+    }
+
+    JailsPawn getCurrentJailsPawn() {
+        return jailsPawns[game.getCurrentTurnIndex()];
     }
 
     private class MouseManager extends MouseAdapter
@@ -74,6 +81,7 @@ public class Hexagone extends JFrame {
                     }
                 }
 
+                JailsPawn jailsPawn = getCurrentJailsPawn();
                 PlayerItem selectedItem = jailsPawn.getSelectedItem();
                 if (selectedItem != null) {
                     if (!panelPlateau.clic(x, y, selectedItem)) {

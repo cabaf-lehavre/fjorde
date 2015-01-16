@@ -25,6 +25,10 @@ public class Game {
         return getPlayer(1);
     }
 
+    public int getCurrentTurnIndex() {
+        return currentPlayer;
+    }
+
     public Turn getCurrentTurn() {
         return currentTurn;
     }
