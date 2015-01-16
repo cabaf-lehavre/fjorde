@@ -58,6 +58,6 @@ public class Turn {
     }
 
     public boolean isOver() {
-        return !canMovePawn();
+        return nrTilesMoved == 1 && nrItemsMoved == 1;
     }
 }

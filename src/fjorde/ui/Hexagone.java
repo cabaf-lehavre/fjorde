@@ -17,6 +17,7 @@ public class Hexagone extends JFrame {
 
     Game game;
     Plateau panelPlateau;
+    JPanel panelPioches;
     JailsPawn[] jailsPawns;
     Draw draw;
     Scoreboard scoreBoard;
@@ -41,7 +42,7 @@ public class Hexagone extends JFrame {
         scoreBoard = new Scoreboard(game);
         draw = new Draw();
 
-        JPanel panelPioches = new JPanel(new GridLayout(3, 1));
+        panelPioches = new JPanel(new GridLayout(3, 1));
         panelPioches.add(draw);
         panelPioches.add(jailsPawns[game.getCurrentTurnIndex()]);
         panelPioches.add(scoreBoard);
@@ -55,6 +56,11 @@ public class Hexagone extends JFrame {
         setSize(975,665);
         setDefaultCloseOperation(3);
         setVisible(true);
+    }
+
+    void updateJailsPawn() {
+        panelPioches.remove(1);
+        panelPioches.add(jailsPawns[game.getCurrentTurnIndex()], 1);
     }
 
     JailsPawn getCurrentJailsPawn() {
@@ -92,6 +98,7 @@ public class Hexagone extends JFrame {
 
                 scoreBoard.update();
                 game.tryPassTurn();
+                updateJailsPawn();
             }
         }
     }
