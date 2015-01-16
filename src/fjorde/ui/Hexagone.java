@@ -49,8 +49,9 @@ public class Hexagone extends JFrame {
         add(panelPlateau);
         add(panelPioches, BorderLayout.EAST);
 
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         setTitle("Fjorde");
-        setLocation(500, 200);
+        setLocation(dim.width / 20, dim.height / 20);
         setSize(975,665);
         setDefaultCloseOperation(3);
         setVisible(true);

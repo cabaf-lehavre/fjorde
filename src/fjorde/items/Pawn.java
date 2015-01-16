@@ -17,6 +17,7 @@ public class Pawn extends PlayerItem
 
     @Override
     public boolean canPut(Tile tile) {
+        if (tile.getItem() instanceof Jail || tile.getItem() instanceof Pawn) return false;
         Tile neighbour;
         for (int i = 0; i < Tile.CORNERS ; i++) {
             neighbour = tile.getNeighbour(i);
