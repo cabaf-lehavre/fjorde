@@ -31,7 +31,7 @@ public class Game {
 
     public void passTurn() {
         currentPlayer = 1 - currentPlayer;
-        currentTurn = new Turn(player);
+        currentTurn = new Turn(players[currentPlayer]);
     }
 
     public Player getWinner() {
