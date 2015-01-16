@@ -3,6 +3,7 @@ package fjorde.ui; /**
  */
 
 import fjorde.Bag;
+import fjorde.Game;
 import fjorde.Player;
 import fjorde.PlayerItem;
 import fjorde.Tile;
@@ -14,6 +15,7 @@ import java.awt.event.MouseEvent;
 
 public class Hexagone extends JFrame {
 
+    Game game;
     Plateau panelPlateau;
     JailsPawn jailsPawn;
     Draw draw;
@@ -23,13 +25,14 @@ public class Hexagone extends JFrame {
      * Main UI, adding all panel, managers ...
      */
     public Hexagone() {
+        Player michael = new Player(1, "Mickael", "Noir", new Bag(4, 20));
+        Player bay = new Player(1, "Fucking Bay", "Noir", new Bag(4, 20));
+        game = new Game(michael, bay);
+
         panelPlateau = new Plateau();
         panelPlateau.setBackground(Color.white);
         panelPlateau.setLayout(null);
         panelPlateau.addMouseListener(new MouseManager());
-
-        Player michael = new Player(1, "Mickael", "Noir", new Bag(4, 20));
-        Player bay = new Player(1, "Fucking Bay", "Noir", new Bag(4, 20));
 
         jailsPawn = new JailsPawn(michael);
         scoreBoard = new Scoreboard(michael, bay);
