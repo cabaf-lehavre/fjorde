@@ -27,8 +27,8 @@ public class Hexagone extends JFrame {
         panelPlateau.setLayout(null);
         panelPlateau.addMouseListener(new MouseManager());
 
-        jailsPawn = new JailsPawn(new Player(1, "Mickael", "Noir"));
-        scoreBoard = new Scoreboard(new Player(1, "Michael", "Noir"), new Player(1, "Fucking Bay", "Noir"));
+		jailsPawn = new JailsPawn(new Player(1, "Falsimor", "Noir"));
+        scoreBoard = new Scoreboard(new Player(1, "Falsimor", "Noir"), new Player(2, "Dùnwyn", "Blanche"));
         draw = new Draw();
 
         JPanel panelPioches = new JPanel(new GridLayout(3, 1));
@@ -41,7 +41,7 @@ public class Hexagone extends JFrame {
 
         setTitle("Fjorde");
         setLocation(500, 200);
-        setSize(1025,740);
+        setSize(975,665);
         setDefaultCloseOperation(3);
         setVisible(true);
     }
