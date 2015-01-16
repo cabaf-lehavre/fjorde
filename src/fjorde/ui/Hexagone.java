@@ -81,6 +81,7 @@ public class Hexagone extends JFrame {
                     }
                 }
 
+                scoreBoard.update();
             }
         }
     }
