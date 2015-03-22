@@ -9,3 +9,5 @@ Voir `sujet.pdf`
 * Cyril ALVES
 * Brieuc DE TAPPIE
 * Florentin BENARD
+
+![](https://raw.githubusercontent.com/cabaf-lehavre/fjorde/master/screenshot.png)
